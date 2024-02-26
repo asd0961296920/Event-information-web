@@ -5,7 +5,7 @@ use DOMDocument;
 use DOMXPath;
 
 
-class PostApi
+class PostApi extends Api
 {
 
 

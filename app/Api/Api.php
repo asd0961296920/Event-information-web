@@ -120,7 +120,7 @@ class Api
         return $this->return(json_decode($response), $response->status(), $action, $apiType, $input);
     }
 
-    
+
     /**
      * 帶標頭的PUT連接
      *
@@ -199,7 +199,7 @@ class Api
      * 驗證request
      *
      */
-    public function validator(Request $data,$class,string $apiType, string $action)
+    public function validator(Request $data, $class, string $apiType, string $action)
     {
         $validator = Validator::make($data->all(), $class->rules());
 
@@ -219,10 +219,11 @@ class Api
      * 日期中是否含有時分秒
      *
      */
-    public function hasTime($dateString) {
+    public function hasTime($dateString)
+    {
         // 嘗試以特定格式解析日期時間
         $dateTime = \DateTime::createFromFormat('Y-m-d H:i:s', $dateString);
-    
+
         // 如果解析成功，表示包含時分秒
         // 如果解析失敗，表示不包含時分秒
         return $dateTime !== false;
@@ -235,15 +236,27 @@ class Api
      */
     public function getWebpage(string $url)
     {
-        // 使用 file_get_contents() 函式獲取網頁原始碼
-        $response = file_get_contents($url);
+        // 使用 cURL 初始化一个新的会话
+        $curl = curl_init();
 
-        // 檢查是否發生錯誤
-        if ($response === false) {
-            return 'Error fetching URL';
-        } else {
-            // 輸出網頁原始碼
-            return $response;
+        // 设置 cURL 选项
+        curl_setopt($curl, CURLOPT_URL, $url); // 设置 URL
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); // 将返回的内容作为字符串返回而不是直接输出
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true); // 允许 cURL 自动跟踪重定向
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); // 忽略 SSL 证书验证
+
+        // 执行 cURL 请求并获取返回的页面内容
+        $html = curl_exec($curl);
+
+        // 检查是否发生错误
+        if ($html === false) {
+            return "Error fetching webpage: " . curl_error($curl);
+            return false;
         }
+
+        // 关闭 cURL 会话
+        curl_close($curl);
+
+        return $html;
     }
 }
