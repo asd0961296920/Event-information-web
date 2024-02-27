@@ -38,6 +38,22 @@ class PostApi extends Api
     }
 
     /**
+     * 檢查post是否重複，不重複在建立
+     *
+     */
+    public function repeat_postModel($title,$post_text,$post_url,$post_tab,$website_name,$website_url,$html_python_id,$area_id=0,$imager_title='',$imager1 = '')
+    {
+        $post = Post::where('title',$title)->first();
+        if($post != null){
+            return false;
+        }else{
+            $this->postModel($title,$post_text,$post_url,$post_tab,$website_name,$website_url,$html_python_id,$area_id,$imager_title,$imager1);
+            return true;
+        }
+
+    }
+
+    /**
      * 解析html原始碼輸出文字
      *
      */
@@ -90,14 +106,6 @@ class PostApi extends Api
     }
 
 
-    /**
-     * 解析html原始碼輸出標題和url(有翻頁)
-     *
-     */
-    public function html_url_page($html,$filter,$title_filter,$htmlPython)
-    {
-
-    }
 
     /**
      * 列表查詢文章流程
@@ -110,13 +118,13 @@ class PostApi extends Api
                 $html_post = $this->getWebpage($htmlPython->connect_url . $text['url']);
 
                 $post_text =  $this->html_text($html_post, $htmlPython->post_filter);
-                $this->postModel($text['text'],$post_text,$text['url'],'',$htmlPython->name,$htmlPython->url,$htmlPython->id,$htmlPython->area_id);
+                $this->repeat_postModel($text['text'],$post_text,$htmlPython->connect_url . $text['url'],'',$htmlPython->name,$htmlPython->url,$htmlPython->id,$htmlPython->area_id);
 
             } else {
                 $html_post = $this->getWebpage($text['url']);
 
                 $post_text =  $this->html_text($html_post, $htmlPython->post_filter);
-                $this->postModel($text['text'],$post_text,$text['url'],'',$htmlPython->name,$htmlPython->url,$htmlPython->id,$htmlPython->area_id);
+                $this->repeat_postModel($text['text'],$post_text,$text['url'],'',$htmlPython->name,$htmlPython->url,$htmlPython->id,$htmlPython->area_id);
 
             }
         }
