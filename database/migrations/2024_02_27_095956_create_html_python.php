@@ -29,6 +29,7 @@ return new class extends Migration
             $table->longText('table_page')->nullable()->comment('紀錄如果翻頁變數是什麼');
             $table->integer('page')->comment('要翻幾頁');
             $table->boolean('page_bool')->comment('要不要翻頁');
+            $table->boolean('enble')->comment('要不要啟用');
         });
     }
 

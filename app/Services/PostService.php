@@ -25,42 +25,35 @@ class PostService
         $htmlPythons = HtmlPython::get();
 
         foreach ($htmlPythons as $htmlPython) {
+            if ($htmlPython->enble) {
 
-            $html = $this->api->getWebpage($htmlPython->url);
-            $texts =  $this->api->html_url($html, $htmlPython->body_filter, $htmlPython->title_filter);
-            $this->api->post_text($texts,$htmlPython);
 
-                if($htmlPython->page_bool){
-                    if($htmlPython->table_page != null){
 
-                        for ($i = 2; $i < $htmlPython->page +2 ; $i++) {
+                $html = $this->api->getWebpage($htmlPython->url);
+                $texts =  $this->api->html_url($html, $htmlPython->body_filter, $htmlPython->title_filter);
+                $this->api->post_text($texts, $htmlPython);
+                if ($htmlPython->page_bool) {
+                    if ($htmlPython->table_page != null) {
+
+                        for ($i = 2; $i < $htmlPython->page + 2; $i++) {
                             $html = $this->api->getWebpage($htmlPython->url . $htmlPython->table_page . $i);
                             $texts =  $this->api->html_url($html, $htmlPython->body_filter, $htmlPython->title_filter);
-                            $this->api->post_text($texts,$htmlPython);
+                            $this->api->post_text($texts, $htmlPython);
                         }
-
-                    }else{
-                        for ($i = 2; $i < $htmlPython->page +2 ; $i++) {
+                    } else {
+                        for ($i = 2; $i < $htmlPython->page + 2; $i++) {
                             $html = $this->api->getWebpage($htmlPython->url . '/' . $i);
                             $texts =  $this->api->html_url($html, $htmlPython->body_filter, $htmlPython->title_filter);
-                            $this->api->post_text($texts,$htmlPython);
+                            $this->api->post_text($texts, $htmlPython);
                         }
                     }
-
+                }
             }
-            
-            
-
-
-
-
-
-
         }
 
 
 
-        return $texts;
+        return $texts ?? 'ok';
     }
 
 

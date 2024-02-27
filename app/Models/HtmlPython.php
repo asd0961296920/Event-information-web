@@ -27,7 +27,7 @@ class HtmlPython extends Authenticatable
     protected $guarded = [];
 
     protected $casts = [
-       
+        'enble' => 'boolean',
     ];
 
     protected $hidden = [

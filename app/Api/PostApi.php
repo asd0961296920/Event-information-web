@@ -86,7 +86,7 @@ class PostApi extends Api
         }
 
         }
-        return $results;
+        return $results ?? [];
     }
 
 
