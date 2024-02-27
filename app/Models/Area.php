@@ -12,7 +12,6 @@ class Area extends Authenticatable
 {
     use HasFactory;
     protected $table = 'area';
-    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.

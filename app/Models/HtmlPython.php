@@ -8,10 +8,11 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
 
-class Post extends Authenticatable
+
+class HtmlPython extends Authenticatable
 {
     use HasFactory;
-    protected $table = 'post';
+    protected $table = 'html_python';
 
 
     /**
@@ -20,17 +21,7 @@ class Post extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'title',
-        'post_text',
-        'post_url',
-        'post_tab',
-        'website_name',
-        'website_url',
-        'imager_title',
-        'imager1',
-        'imager2',
-        'imager3',
-        'area_id',
+
     ];
 
     protected $guarded = [];

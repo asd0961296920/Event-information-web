@@ -27,7 +27,8 @@ return new class extends Migration
             $table->longText('imager2')->nullable();
             $table->longText('imager3')->nullable();
             $table->integer('area_id');
-
+            $table->integer('html_python_id');
+            
         });
     }
 

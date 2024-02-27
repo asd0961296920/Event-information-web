@@ -14,4 +14,12 @@ class PostController extends Controller
         $response = $service->PostData($request);
         return $response;
     }
+
+    public function PostText(Request $request)
+    {
+        $service = new PostService();
+        $response = $service->PostText($request);
+        return $response;
+
+    }
 }
