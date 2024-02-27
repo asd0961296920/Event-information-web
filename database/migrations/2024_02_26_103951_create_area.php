@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nation')->nullable();
             $table->string('city')->nullable();
             $table->string('village')->nullable();
+            $table->integer('upid');
         });
     }
 

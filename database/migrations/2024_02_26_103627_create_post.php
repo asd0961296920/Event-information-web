@@ -16,16 +16,16 @@ return new class extends Migration
         Schema::create('post', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('title')->nullable();
-            $table->string('post_text')->nullable();
-            $table->string('post_url')->nullable();
-            $table->string('post_tab')->nullable();
-            $table->string('website_name')->nullable();
-            $table->string('website_url')->nullable();
-            $table->string('imager_title')->nullable();
-            $table->string('imager1')->nullable();
-            $table->string('imager2')->nullable();
-            $table->string('imager3')->nullable();
+            $table->longText('title')->nullable();
+            $table->longText('post_text')->nullable();
+            $table->longText('post_url')->nullable();
+            $table->longText('post_tab')->nullable();
+            $table->longText('website_name')->nullable();
+            $table->longText('website_url')->nullable();
+            $table->longText('imager_title')->nullable();
+            $table->longText('imager1')->nullable();
+            $table->longText('imager2')->nullable();
+            $table->longText('imager3')->nullable();
             $table->integer('area_id');
 
         });
