@@ -28,21 +28,34 @@ class PostService
 
             $html = $this->api->getWebpage($htmlPython->url);
             $texts =  $this->api->html_url($html, $htmlPython->body_filter, $htmlPython->title_filter);
-            foreach ($texts as $text) {
-                if ($htmlPython->connect_url != null) {
-                    $html_post = $this->api->getWebpage($htmlPython->connect_url . $text['url']);
+            $this->api->post_text($texts,$htmlPython);
 
-                    $post_text =  $this->api->html_text($html_post, $htmlPython->post_filter);
-                    $this->api->postModel($text['text'],$post_text,$text['url'],'',$htmlPython->name,$htmlPython->url,$htmlPython->id,$htmlPython->area_id);
+                if($htmlPython->page_bool){
+                    if($htmlPython->table_page != null){
 
-                } else {
-                    $html_post = $this->api->getWebpage($text['url']);
+                        for ($i = 2; $i < $htmlPython->page +2 ; $i++) {
+                            $html = $this->api->getWebpage($htmlPython->url . $htmlPython->table_page . $i);
+                            $texts =  $this->api->html_url($html, $htmlPython->body_filter, $htmlPython->title_filter);
+                            $this->api->post_text($texts,$htmlPython);
+                        }
 
-                    $post_text =  $this->api->html_text($html_post, $htmlPython->post_filter);
-                    $this->api->postModel($text['text'],$post_text,$text['url'],'',$htmlPython->name,$htmlPython->url,$htmlPython->id,$htmlPython->area_id);
+                    }else{
+                        for ($i = 2; $i < $htmlPython->page +2 ; $i++) {
+                            $html = $this->api->getWebpage($htmlPython->url . '/' . $i);
+                            $texts =  $this->api->html_url($html, $htmlPython->body_filter, $htmlPython->title_filter);
+                            $this->api->post_text($texts,$htmlPython);
+                        }
+                    }
 
-                }
             }
+            
+            
+
+
+
+
+
+
         }
 
 

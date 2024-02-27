@@ -89,4 +89,37 @@ class PostApi extends Api
         return $results;
     }
 
+
+    /**
+     * 解析html原始碼輸出標題和url(有翻頁)
+     *
+     */
+    public function html_url_page($html,$filter,$title_filter,$htmlPython)
+    {
+
+    }
+
+    /**
+     * 列表查詢文章流程
+     *
+     */
+    public function post_text($texts,$htmlPython)
+    {
+        foreach ($texts as $text) {
+            if ($htmlPython->connect_url != null) {
+                $html_post = $this->getWebpage($htmlPython->connect_url . $text['url']);
+
+                $post_text =  $this->html_text($html_post, $htmlPython->post_filter);
+                $this->postModel($text['text'],$post_text,$text['url'],'',$htmlPython->name,$htmlPython->url,$htmlPython->id,$htmlPython->area_id);
+
+            } else {
+                $html_post = $this->getWebpage($text['url']);
+
+                $post_text =  $this->html_text($html_post, $htmlPython->post_filter);
+                $this->postModel($text['text'],$post_text,$text['url'],'',$htmlPython->name,$htmlPython->url,$htmlPython->id,$htmlPython->area_id);
+
+            }
+        }
+    }
+
 }
