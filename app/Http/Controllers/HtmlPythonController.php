@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\HtmlPythonService;
+use App\Http\Requests\HtmlPythonRequest;
 
 class HtmlPythonController extends Controller
 {
@@ -13,7 +14,7 @@ class HtmlPythonController extends Controller
         return $response;
     }
 
-    public function show(Request $request,$id)
+    public function show(HtmlPythonRequest $request,$id)
     {
         $service = new HtmlPythonService();
         $response = $service->show($request,$id);
@@ -21,7 +22,7 @@ class HtmlPythonController extends Controller
 
     }
 
-    public function post(Request $request)
+    public function post(HtmlPythonRequest $request)
     {
         $service = new HtmlPythonService();
         $response = $service->post($request);

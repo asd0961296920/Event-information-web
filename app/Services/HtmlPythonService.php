@@ -10,6 +10,7 @@ use App\Api\PostApi;
 use Symfony\Component\DomCrawler\Crawler;
 use App\Models\Post;
 use App\Models\HtmlPython;
+use App\Http\Requests\HtmlPythonRequest;
 
 class HtmlPythonService
 {
@@ -32,14 +33,14 @@ class HtmlPythonService
         return HtmlPython::where('id', $id)->first();
     }
 
-    public function post(Request $request)
+    public function post(HtmlPythonRequest $request)
     {
         $HtmlPython = new HtmlPython();
         $HtmlPython = $request->all();
         return $HtmlPython;
     }
 
-    public function patch(Request $request, $id)
+    public function patch(HtmlPythonRequest $request, $id)
     {
         $HtmlPython =   HtmlPython::where('id', $id)->first();
         $HtmlPython = $request->all();
