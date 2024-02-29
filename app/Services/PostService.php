@@ -73,8 +73,10 @@ class PostService
 
     public function GetData(Request $request)
     {
-        $perPage = 10;
-        return Post::with(['html_python','area'])->paginate($perPage, ['*'], 'page', 2);
+
+        $perPage = $request->input('number');
+        $page = $request->input('page');
+        return Post::with(['html_python','area'])->paginate($perPage, ['*'], 'page', $page);
     }
 
 

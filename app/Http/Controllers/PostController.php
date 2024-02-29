@@ -25,6 +25,10 @@ class PostController extends Controller
 
     public function GetData(Request $request)
     {
+        $this->validate($request, [
+            'page' => 'required',
+            'number' => 'required'
+        ]);
         $service = new PostService();
         $response = $service->GetData($request);
         return $response;
