@@ -58,7 +58,7 @@ class PostApi extends Api
      */
     public function html_text($html, $filter)
     {
-        
+
         $crawler = new Crawler($html);
         $filteredContent = $crawler->filter($filter);
         $text = '';
@@ -159,41 +159,44 @@ class PostApi extends Api
     {
 
         foreach ($texts as $text) {
-            if ($htmlPython->connect_url != null) {
-                $html_post = $this->getWebpage($htmlPython->connect_url . $text['url']);
+            try {
+                if ($htmlPython->connect_url != null) {
+                    $html_post = $this->getWebpage($htmlPython->connect_url . $text['url']);
 
-                $post_text =  $this->html_text($html_post, $htmlPython->post_filter);
-                $imager_url = null;
-                if ($htmlPython->imager_bool && $htmlPython->imager1_filter != null) {
-                    $imager_html =  $this->html_second_floor($html_post, $htmlPython->post_filter);
-                    $imager_url =  $this->html_imager_url_one($imager_html, $htmlPython->imager1_filter, 'jpg');
-                    if ($imager_url == null) {
-                        $imager_url =  $this->html_imager_url_one($imager_html, $htmlPython->imager1_filter, 'png');
+                    $post_text =  $this->html_text($html_post, $htmlPython->post_filter);
+                    $imager_url = null;
+                    if ($htmlPython->imager_bool && $htmlPython->imager1_filter != null) {
+                        $imager_html =  $this->html_second_floor($html_post, $htmlPython->post_filter);
+                        $imager_url =  $this->html_imager_url_one($imager_html, $htmlPython->imager1_filter, 'jpg');
+                        if ($imager_url == null) {
+                            $imager_url =  $this->html_imager_url_one($imager_html, $htmlPython->imager1_filter, 'png');
+                        }
+                        if ($htmlPython->imager_url != null && $imager_url != null) {
+                            $imager_url = $htmlPython->imager_url . $imager_url;
+                        }
                     }
-                    if ($htmlPython->imager_url != null && $imager_url != null) {
-                        $imager_url = $htmlPython->imager_url . $imager_url;
+
+                    $this->repeat_postModel($text['text'], $post_text, $htmlPython->connect_url . $text['url'], '', $htmlPython->name, $htmlPython->url, $htmlPython->id, $htmlPython->area_id, null, $imager_url);
+                } else {
+                    $html_post = $this->getWebpage($text['url']);
+
+                    $post_text =  $this->html_text($html_post, $htmlPython->post_filter);
+                    $imager_url = null;
+                    if ($htmlPython->imager_bool && $htmlPython->imager1_filter != null) {
+                        $imager_html =  $this->html_second_floor($html_post, $htmlPython->post_filter);
+                        $imager_url =  $this->html_imager_url_one($imager_html, $htmlPython->imager1_filter, 'jpg');
+                        if ($imager_url == null) {
+                            $imager_url =  $this->html_imager_url_one($imager_html, $htmlPython->imager1_filter, 'png');
+                        }
+                        if ($htmlPython->imager_url != null && $imager_url != null) {
+                            $imager_url = $htmlPython->imager_url . $imager_url;
+                        }
                     }
+
+
+                    $this->repeat_postModel($text['text'], $post_text, $text['url'], '', $htmlPython->name, $htmlPython->url, $htmlPython->id, $htmlPython->area_id, null, $imager_url);
                 }
-
-                $this->repeat_postModel($text['text'], $post_text, $htmlPython->connect_url . $text['url'], '', $htmlPython->name, $htmlPython->url, $htmlPython->id, $htmlPython->area_id, null, $imager_url);
-            } else {
-                $html_post = $this->getWebpage($text['url']);
-
-                $post_text =  $this->html_text($html_post, $htmlPython->post_filter);
-                $imager_url = null;
-                if ($htmlPython->imager_bool && $htmlPython->imager1_filter != null) {
-                    $imager_html =  $this->html_second_floor($html_post, $htmlPython->post_filter);
-                    $imager_url =  $this->html_imager_url_one($imager_html, $htmlPython->imager1_filter, 'jpg');
-                    if ($imager_url == null) {
-                        $imager_url =  $this->html_imager_url_one($imager_html, $htmlPython->imager1_filter, 'png');
-                    }
-                    if ($htmlPython->imager_url != null && $imager_url != null) {
-                        $imager_url = $htmlPython->imager_url . $imager_url;
-                    }
-                }
-
-
-                $this->repeat_postModel($text['text'], $post_text, $text['url'], '', $htmlPython->name, $htmlPython->url, $htmlPython->id, $htmlPython->area_id, null, $imager_url);
+            } catch (\Exception $e) {
             }
         }
     }
