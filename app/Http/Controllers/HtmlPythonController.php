@@ -6,18 +6,43 @@ use App\Services\HtmlPythonService;
 
 class HtmlPythonController extends Controller
 {
-    public function GetData(Request $request)
+    public function list(Request $request)
     {
         $service = new HtmlPythonService();
-        $response = $service->GetData($request);
+        $response = $service->list($request);
         return $response;
     }
 
-    public function GetShow(Request $request)
+    public function show(Request $request,$id)
     {
         $service = new HtmlPythonService();
-        $response = $service->GetShow($request);
+        $response = $service->show($request,$id);
         return $response;
 
     }
+
+    public function post(Request $request)
+    {
+        $service = new HtmlPythonService();
+        $response = $service->post($request);
+        return $response;
+
+    }
+    public function patch(Request $request,$id)
+    {
+        $service = new HtmlPythonService();
+        $response = $service->patch($request,$id);
+        return $response;
+
+    }
+
+    public function delete(Request $request,$id)
+    {
+        $service = new HtmlPythonService();
+        $response = $service->delete($request,$id);
+        return $response;
+
+    }
+
+
 }
