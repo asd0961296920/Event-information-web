@@ -62,8 +62,11 @@ class PostService
 
     public function PostText(Request $request)
     {
-        $html = $this->api->getWebpage('https://pthg.tainanoutlook.com/');
-        $text =  $this->api->html_url($html, '.view-content', '.masonry-item');
+        $html = $this->api->getWebpage('https://khh.travel/zh-tw/event/calendardetail/5363');
+
+        $text =  $this->api->html_second_floor($html, '.position-relative');
+        $text =  $this->api->html_imager_url_one($text, '.embed-responsive-item','jpg');
+        // $text =  $this->api->html_url($html, '.view-content', '.masonry-item');
         return $text;
     }
 }

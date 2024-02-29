@@ -20,6 +20,7 @@ return new class extends Migration
             $table->longText('title_filter')->nullable()->comment('列表內的每一項的查詢關鍵字');
             $table->longText('body_filter')->nullable()->comment('列表的查詢關鍵字');
             $table->longText('post_filter')->nullable()->comment('文章的查詢關鍵字');
+            $table->longText('imager_url')->nullable()->comment('圖片連接網址');
             $table->longText('imager1_filter')->nullable();
             $table->longText('imager2_filter')->nullable();
             $table->longText('imager3_filter')->nullable();
@@ -29,6 +30,7 @@ return new class extends Migration
             $table->longText('table_page')->nullable()->comment('紀錄如果翻頁變數是什麼');
             $table->integer('page')->comment('要翻幾頁');
             $table->boolean('page_bool')->comment('要不要翻頁');
+            $table->boolean('imager_bool')->comment('要不要紀錄圖片');
             $table->boolean('enble')->comment('要不要啟用');
         });
     }

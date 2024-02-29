@@ -28,6 +28,8 @@ class HtmlPython extends Authenticatable
 
     protected $casts = [
         'enble' => 'boolean',
+        'page_bool' => 'boolean',
+        'imager_bool' => 'boolean',
     ];
 
     protected $hidden = [
