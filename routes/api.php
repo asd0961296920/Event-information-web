@@ -13,14 +13,15 @@ Route::controller(ExampleController::class)->prefix('v1/example/')->group(functi
     Route::get('data/{id}', 'GetData');
 });
 
-Route::prefix('/v1')->group(function () {
+Route::prefix('/v1/automatic')->group(function () {
     Route::get('/post', [PostController::class, 'PostData']);
     Route::get('/post_text', [PostController::class, 'PostText']);
+    Route::post('/test', [PostController::class, 'test']);
 });
 
-Route::prefix('/v1')->group(function () {
-    Route::get('/post/list', [PostController::class, 'GetData']);
-    Route::get('/post/show/{id}', [PostController::class, 'GetShow']);
+Route::prefix('/v1/post')->group(function () {
+    Route::get('/list', [PostController::class, 'GetData']);
+    Route::get('/show/{id}', [PostController::class, 'GetShow']);
 });
 
 Route::prefix('/v1/htmlPython')->group(function () {
@@ -30,5 +31,4 @@ Route::prefix('/v1/htmlPython')->group(function () {
     Route::patch('patch/{id}', [HtmlPythonController::class, 'patch']);
     Route::delete('delete/{id}', [HtmlPythonController::class, 'delete']);
 });
-
 

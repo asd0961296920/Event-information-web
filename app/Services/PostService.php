@@ -62,12 +62,12 @@ class PostService
 
     public function PostText(Request $request)
     {
-        $html = $this->api->getWebpage('https://khh.travel/zh-tw/event/calendardetail/5363');
+        // $html = $this->api->getWebpage('https://khh.travel/zh-tw/event/calendardetail/5363');
 
-        $text =  $this->api->html_second_floor($html, '.position-relative');
-        $text =  $this->api->html_imager_url_one($text, '.embed-responsive-item','jpg');
+        // $text =  $this->api->html_second_floor($html, '.position-relative');
+        // $text =  $this->api->html_imager_url_one($text, '.embed-responsive-item','jpg');
         // $text =  $this->api->html_url($html, '.view-content', '.masonry-item');
-        return $text;
+        // return $text;
     }
 
 
@@ -76,12 +76,70 @@ class PostService
 
         $perPage = $request->input('number');
         $page = $request->input('page');
-        return Post::with(['html_python','area'])->paginate($perPage, ['*'], 'page', $page);
+        return Post::with(['html_python', 'area'])->paginate($perPage, ['*'], 'page', $page);
     }
 
 
-    public function GetShow(Request $request,$id)
+    public function GetShow(Request $request, $id)
     {
-        return Post::where('id',$id)->first();
+        return Post::where('id', $id)->first();
+    }
+
+    public function test(Request $request)
+    {
+        $html = $this->api->getWebpage($request->input('url'));
+        $tables = $this->api->html_url($html, $request->input('body_filter'), $request->input('title_filter'));
+        $text = [];
+
+        foreach ($tables as $table) {
+            if ($request->input('connect_url') != null) {
+                $html_post = $this->api->getWebpage($request->input('connect_url') . $table['url']);
+
+                $post_text =  $this->api->html_text($html_post, $request->input('post_filter'));
+                $imager_url = null;
+                if ($request->input('imager_bool') && $request->input('imager1_filter') != null) {
+                    $imager_html =  $this->api->html_second_floor($html_post, $request->input('post_filter'));
+                    $imager_url =  $this->api->html_imager_url_one($imager_html, $request->input('imager1_filter'), 'jpg');
+                    if ($imager_url == null) {
+                        $imager_url =  $this->api->html_imager_url_one($imager_html, $request->input('imager1_filter'), 'png');
+                    }
+                    if ($request->input('imager_url') != null && $imager_url != null) {
+                        $imager_url = $request->input('imager_url') . $imager_url;
+                    }
+                }
+                
+                $text[] = [
+                    'title' => $table['text'],
+                    'body' => $post_text,
+                    'imager' => $imager_url,
+                    'url' => $table['url']
+                ];
+            } else {
+                $html_post = $this->api->getWebpage($table['url']);
+
+                $post_text =  $this->api->html_text($html_post, $request->input('post_filter'));
+                $imager_url = null;
+                if ($request->input('imager_bool') && $request->input('imager1_filter') != null) {
+                    $imager_html =  $this->api->html_second_floor($html_post, $request->input('post_filter'));
+                    $imager_url =  $this->api->html_imager_url_one($imager_html, $request->input('imager1_filter'), 'jpg');
+                    if ($imager_url == null) {
+                        $imager_url =  $this->api->html_imager_url_one($imager_html, $request->input('imager1_filter'), 'png');
+                    }
+                    if ($request->input('imager_url') != null && $imager_url != null) {
+                        $imager_url = $request->input('imager_url') . $imager_url;
+                    }
+                }
+                $text[] = [
+                    'title' => $table['text'],
+                    'body' => $post_text,
+                    'imager' => $imager_url,
+                    'url' => $table['url']
+                ];
+            }
+        }
+        return [
+            'list_data' => $tables,
+            'text_data' => $text,
+        ];
     }
 }

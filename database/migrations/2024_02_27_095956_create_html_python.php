@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name')->nullable();
-            $table->longText('title_filter')->nullable()->comment('列表內的每一項的查詢關鍵字');
-            $table->longText('body_filter')->nullable()->comment('列表的查詢關鍵字');
+            $table->longText('title_filter')->nullable()->comment('列表內的每一項的查詢關鍵字（表單的第二層定位）');
+            $table->longText('body_filter')->nullable()->comment('列表的查詢關鍵字（表單的第一層定位）');
             $table->longText('post_filter')->nullable()->comment('文章的查詢關鍵字');
             $table->longText('imager_url')->nullable()->comment('圖片連接網址');
             $table->longText('imager1_filter')->nullable();

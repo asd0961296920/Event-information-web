@@ -31,7 +31,7 @@ class HtmlPythonRequest extends FormRequest
             'body_filter' => 'required|string|nullable',
             'imager1_filter' => 'sometimes|string|nullable',
             'url' => 'required|string|nullable',
-            'connect_url' => 'required|string|nullable',
+            'connect_url' => 'sometimes|string|nullable',
             'post_filter' => 'required|string|nullable',
             'table_page' => 'sometimes|string|nullable',
             'page_bool' => 'required|boolean',
@@ -39,15 +39,15 @@ class HtmlPythonRequest extends FormRequest
             'enble' => 'required|boolean',
             'imager_url' => 'sometimes|string|nullable',
             'imager_bool' => 'required|boolean',
-
+            'area_id' => 'required|integer',
         ];
     }
 
     public function attributes()
     {
         return [
-            'title_filter'=>'列表的第一層定位',
-            'body_filter'=>'列表的第二層定位',
+            'title_filter'=>'列表的第二層定位',
+            'body_filter'=>'列表的第一層定位',
             'connect_url'=>'文章的url',
             'url'=>'列表的url',
             'table_page'=>'要翻頁的變數代碼，沒有就null',

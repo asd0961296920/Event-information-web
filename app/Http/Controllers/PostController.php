@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\PostService;
+use App\Http\Requests\HtmlPythonRequest;
 
 class PostController extends Controller
 {
@@ -40,5 +41,11 @@ class PostController extends Controller
         $response = $service->GetShow($request,$id);
         return $response;
 
+    }
+    public function test(HtmlPythonRequest $request)
+    {
+        $service = new PostService();
+        $response = $service->test($request);
+        return $response;
     }
 }

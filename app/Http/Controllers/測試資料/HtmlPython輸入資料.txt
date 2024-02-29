@@ -1,0 +1,16 @@
+{
+    "name": "測試網站",
+    "title_filter": ".masonry-item",
+    "body_filter": ".view-content",
+    "imager1_filter": null,
+    "url": "https://pthg.tainanoutlook.com",
+    "connect_url": "https://pthg.tainanoutlook.com",
+    "post_filter": ".field-items",
+    "table_page": "/?page=",
+    "page_bool": false,
+    "page": 0,
+    "enble": true,
+    "imager_url": null,
+    "imager_bool": false,
+    "area_id":1
+}
