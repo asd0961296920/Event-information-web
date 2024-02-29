@@ -22,4 +22,19 @@ class PostController extends Controller
         return $response;
 
     }
+
+    public function GetData(Request $request)
+    {
+        $service = new PostService();
+        $response = $service->GetData($request);
+        return $response;
+    }
+
+    public function GetShow(Request $request,$id)
+    {
+        $service = new PostService();
+        $response = $service->GetShow($request,$id);
+        return $response;
+
+    }
 }

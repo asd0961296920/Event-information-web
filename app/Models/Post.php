@@ -43,4 +43,12 @@ class Post extends Authenticatable
     ];
 
 
+
+    public function html_python(){
+        return $this->belongsTo(HtmlPython::class, 'html_python_id', 'id');
+    }
+    public function area(){
+        return $this->belongsTo(Area::class, 'area_id', 'id');
+    }
+
 }

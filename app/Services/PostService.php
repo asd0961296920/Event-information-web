@@ -69,4 +69,17 @@ class PostService
         // $text =  $this->api->html_url($html, '.view-content', '.masonry-item');
         return $text;
     }
+
+
+    public function GetData(Request $request)
+    {
+        $perPage = 10;
+        return Post::with(['html_python','area'])->paginate($perPage, ['*'], 'page', 2);
+    }
+
+
+    public function GetShow(Request $request,$id)
+    {
+        return Post::where('id',$id)->first();
+    }
 }

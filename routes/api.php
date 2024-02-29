@@ -17,7 +17,9 @@ Route::prefix('/v1')->group(function () {
     Route::get('/post_text', [PostController::class, 'PostText']);
 });
 
-
-
+Route::prefix('/v1')->group(function () {
+    Route::get('/post/list', [PostController::class, 'GetData']);
+    Route::get('/post/show/{id}', [PostController::class, 'GetShow']);
+});
 
 
