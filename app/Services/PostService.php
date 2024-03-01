@@ -76,7 +76,7 @@ class PostService
 
         $perPage = $request->input('number');
         $page = $request->input('page');
-        $posts = Post::with(['html_python', 'area'])->paginate($perPage, ['*'], 'page', $page);
+        $posts = Post::with(['html_python', 'area'])->orderBy('created_at', 'desc')->paginate($perPage, ['*'], 'page', $page);
         // 取得當前頁碼
         $currentPage = $posts->currentPage();
 

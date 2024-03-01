@@ -6,7 +6,8 @@ export default {
     return {
       apiData: null,
       page: 2,
-      number: 5,
+      number: 3,
+      pageData: 0
     };
   },
 
@@ -27,7 +28,9 @@ export default {
         )
         .then((response) => {
           // 请求成功，将数据存储在组件的数据中
+           this.pageData = response.data;
           this.apiData = response.data.posts.data;
+          
           // console.log(response);
         })
         .catch((error) => {
@@ -35,6 +38,16 @@ export default {
           console.error("Error fetching data:", error);
         });
     },
+
+  handlePageClick(pageNumber) {
+
+    this.page = pageNumber;
+    this.fetchData();
+
+    }
+
+
+
   },
 
   // 计算属性，用于根据搜索条件过滤数据
@@ -55,7 +68,7 @@ export default {
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, index) in this.apiData" :key="index">
+        <tr v-for="(item, index) in apiData" :key="index">
           <th scope="row"></th>
           <td>{{ item.title }}</td>
           <td>Otto</td>
@@ -63,5 +76,32 @@ export default {
         </tr>
       </tbody>
     </table>
+
+
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous" @click="handlePageClick(page > 1 ? page - 1 : 1)">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+<div v-for="counter in pageData.totalPages" :key="counter"> 
+    <li class="page-item active" aria-current="page" v-if="counter == page">
+      <a class="page-link" href="#" @click="handlePageClick(counter)">{{ counter }}</a>
+      </li>
+          <li class="page-item" v-else>
+      <a class="page-link" href="#" @click="handlePageClick(counter)">{{ counter }}</a>
+      </li>
+</div>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next" @click="handlePageClick(page < pageData.totalPages ? page + 1 : pageData.totalPages)">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+
   </div>
 </template>
