@@ -57,7 +57,6 @@ export default {
 
 <template>
   <div>
-    <htmlTemplate></htmlTemplate>
     <table class="table table-hover">
       <thead>
         <tr>
