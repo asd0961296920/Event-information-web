@@ -10,7 +10,7 @@ const routes = [
       title: "腳本系統",
       authRequired: true,
     },
-    component: () => import("/views/main/MainJs"),
+    component: () => import("/views/main/Main"),
   }
 ];
 

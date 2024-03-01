@@ -76,7 +76,23 @@ class PostService
 
         $perPage = $request->input('number');
         $page = $request->input('page');
-        return Post::with(['html_python', 'area'])->paginate($perPage, ['*'], 'page', $page);
+        $posts = Post::with(['html_python', 'area'])->paginate($perPage, ['*'], 'page', $page);
+        // 取得當前頁碼
+        $currentPage = $posts->currentPage();
+
+        // 取得總共的項目數量
+        $totalItems = $posts->total();
+
+        // 取得總共的分頁數量
+        $totalPages = $posts->lastPage();
+
+        // 返回結果，包括當前頁碼、總共的項目數量和總共的分頁數量
+        return [
+            'currentPage' => $currentPage,
+            'totalItems' => $totalItems,
+            'totalPages' => $totalPages,
+            'posts' => $posts
+        ];
     }
 
 
@@ -107,7 +123,7 @@ class PostService
                         $imager_url = $request->input('imager_url') . $imager_url;
                     }
                 }
-                
+
                 $text[] = [
                     'title' => $table['text'],
                     'body' => $post_text,
