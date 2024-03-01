@@ -6,7 +6,7 @@ export default {
     return {
       apiData: null,
       page: 2,
-      number: 3,
+      number: 10,
       pageData: 0
     };
   },
