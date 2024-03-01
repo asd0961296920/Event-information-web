@@ -1,21 +1,20 @@
 <script>
 import axios from "axios";
 // import textImager from "/src/layouts/easterEggs/textImager";
-import htmlTemplate from '/views/main/MainHtml.vue';
+import htmlTemplate from "/views/main/MainHtml.vue";
 export default {
-    components: {
-    htmlTemplate 
+  components: {
+    htmlTemplate,
   },
   data() {
     return {
       searchQuery: "",
       apiData: null,
       isChecked: false,
-      start: null
+      start: null,
     };
   },
 
-  
   mounted() {
     // 在组件挂载后调用API
     this.fetchData();
@@ -203,6 +202,5 @@ export default {
 </script>
 
 <template>
-<htmlTemplate></htmlTemplate>
-
+  <htmlTemplate></htmlTemplate>
 </template>
