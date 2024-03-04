@@ -32,7 +32,7 @@ export default {
            this.pageData = response.data;
           this.apiData = response.data.posts.data;
           
-          // console.log(response);
+          console.log(id);
         })
         .catch((error) => {
           // 处理错误

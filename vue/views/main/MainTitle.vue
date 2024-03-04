@@ -31,12 +31,10 @@ export default {
         });
     },
 
-  handlePageClick(pageNumber) {
+    city(id) {
+window.location.href = "/city/"+id;
 
-    this.page = pageNumber;
-    this.fetchData();
-
-    }
+    },
 
 
 
@@ -61,7 +59,7 @@ export default {
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li> -->
         <li class="nav-item">
-          <a class="nav-link" href="/city/{{item.area_id}}">{{item.city}}</a>
+          <a class="nav-link" href="#" @click="city(item.id)">{{item.city}}</a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link disabled">Disabled</a>
