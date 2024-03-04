@@ -25,7 +25,19 @@ export default {
 
 <div>
         <MainTitle></MainTitle>
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-12">
       <PageBody></PageBody>
+    </div>
+  </div>
+</div>
+
+
+
+
   
   
    </div>

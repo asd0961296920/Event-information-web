@@ -12,8 +12,10 @@ export default {
   methods: {
   PageClick(id) {
 window.location.href = "/page/"+id;
-    }
-
+    },
+WebClick(url){
+ window.open(url);
+}
 
   },
 
@@ -30,7 +32,7 @@ window.location.href = "/page/"+id;
           <th scope="col">地區</th>
           <th scope="col">文章標題</th>
           <th scope="col">Last</th>
-          <th scope="col">Handle</th>
+          <th scope="col">活動連結</th>
         </tr>
       </thead>
       <tbody>
@@ -38,7 +40,7 @@ window.location.href = "/page/"+id;
           <th scope="row">{{item.area.city}}</th>
           <td><a class="page-link" href="#" @click="PageClick(item.id)" >{{ item.title }}</a></td>
           <td>Otto</td>
-          <td>@mdo</td>
+          <td><button type="button" class="btn btn-outline-info" @click="WebClick(item.post_url)">點我</button></td>
         </tr>
       </tbody>
     </table>

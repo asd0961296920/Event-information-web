@@ -5,6 +5,7 @@ export default {
   data() {
     return {
       apiData: null,
+      post: null
     };
   },
 
@@ -25,8 +26,10 @@ export default {
         .then((response) => {
           // 请求成功，将数据存储在组件的数据中
            this.apiData = response.data;
-          
-          // console.log(response);
+           this.post = this.apiData.post_text;
+
+          this.post = this.post.replace(/\s/g, "<br>");
+          console.log(this.apiData.post_text);
         })
         .catch((error) => {
           // 处理错误
@@ -44,13 +47,8 @@ export default {
 </script>
 
 <template>
-  <div v-if="apiData">
- <h1>{{ apiData.title }}</h1>
-<div>
-
-{{apiData.post_text}}
-
+<div v-if="apiData">
+  <h2>{{ apiData.title }}</h2>
+  <div v-html="post"></div>
 </div>
-
-  </div>
 </template>
