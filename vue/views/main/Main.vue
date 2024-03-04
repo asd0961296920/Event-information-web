@@ -1,9 +1,11 @@
 <script>
 // import textImager from "/src/layouts/easterEggs/textImager";
 import MainTable from "/views/main/MainTable.vue";
+import MainTitle from "/views/main/MainTitle.vue";
 export default {
   components: {
     MainTable,
+    MainTitle
   },
   data() {
     return {
@@ -21,7 +23,7 @@ export default {
 <template>
 
 <div>
-  
+      <MainTitle></MainTitle>
     <MainTable></MainTable>
   
   

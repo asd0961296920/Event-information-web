@@ -5,7 +5,7 @@ export default {
   data() {
     return {
       apiData: null,
-      page: 2,
+      page: 1,
       number: 10,
       pageData: 0
     };
