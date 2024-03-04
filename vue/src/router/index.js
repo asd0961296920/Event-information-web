@@ -5,21 +5,30 @@ import { createRouter, createWebHistory } from 'vue-router';
 const routes = [
   {
     path: "/",
-    name: "index_route",
+    name: "main",
     meta: {
-      title: "腳本系統",
+      title: "總列表",
       authRequired: true,
     },
     component: () => import("/views/main/Main"),
   },
   {
     path: "/city/:id",
-    name: "page",
+    name: "city",
     meta: {
-      title: "腳本系統",
+      title: "地區列表",
       authRequired: true,
     },
-    component: () => import("/views/pageMain/PageMain"),
+    component: () => import("/views/city/CityMain"),
+  },
+  {
+    path: "/page/:id",
+    name: "page",
+    meta: {
+      title: "文章內頁",
+      authRequired: true,
+    },
+    component: () => import("/views/page/PageMain"),
   }
 ];
 

@@ -1,7 +1,11 @@
 <script>
 import axios from "axios";
 // import textImager from "/src/layouts/easterEggs/textImager";
+import Table from "/views/Table.vue";
 export default {
+  components: {
+    Table
+  },
   data() {
     return {
       apiData: null,
@@ -43,7 +47,7 @@ export default {
   handlePageClick(pageNumber) {
 
     this.page = pageNumber;
-    this.fetchData();
+    this.fetchData(this.$route.params.id);
 
     }
 
@@ -58,24 +62,7 @@ export default {
 
 <template>
   <div>
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">文章標題</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(item, index) in apiData" :key="index">
-          <th scope="row"></th>
-          <td>{{ item.title }}</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-      </tbody>
-    </table>
+    <Table :apiData="apiData" />
 
 
 

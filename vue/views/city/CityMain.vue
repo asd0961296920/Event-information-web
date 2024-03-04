@@ -1,6 +1,6 @@
 <script>
 // import textImager from "/src/layouts/easterEggs/textImager";
-import MainTable from "/views/pageMain/MainTable.vue";
+import MainTable from "/views/city/CityTable.vue";
 import MainTitle from "/views/main/MainTitle.vue";
 export default {
   components: {
