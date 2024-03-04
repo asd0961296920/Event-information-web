@@ -32,6 +32,7 @@ return new class extends Migration
             $table->boolean('page_bool')->comment('要不要翻頁');
             $table->boolean('imager_bool')->comment('要不要紀錄圖片');
             $table->boolean('enble')->comment('要不要啟用');
+            $table->longText('event_date_filter')->nullable()->comment('活動日期查詢關鍵字');
         });
     }
 

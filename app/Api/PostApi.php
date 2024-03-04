@@ -21,7 +21,7 @@ class PostApi extends Api
      * 建立post資料
      *
      */
-    public function postModel($title, $post_text, $post_url, $post_tab, $website_name, $website_url, $html_python_id, $area_id = 0, $imager_title = '', $imager1 = '')
+    public function postModel($title, $post_text, $post_url, $post_tab, $website_name, $website_url, $html_python_id, $area_id = 0, $imager_title = '', $imager1 = '',$date)
     {
         $post = new Post();
         $post->title = $title;
@@ -34,6 +34,8 @@ class PostApi extends Api
         $post->imager1 = $imager1;
         $post->area_id = $area_id;
         $post->html_python_id = $html_python_id;
+        $post->event_date = $date;
+
         $post->save();
     }
 
@@ -41,13 +43,13 @@ class PostApi extends Api
      * 檢查post是否重複，不重複在建立
      *
      */
-    public function repeat_postModel($title, $post_text, $post_url, $post_tab, $website_name, $website_url, $html_python_id, $area_id = 0, $imager_title = '', $imager1 = '')
+    public function repeat_postModel($title, $post_text, $post_url, $post_tab, $website_name, $website_url, $html_python_id, $area_id = 0, $imager_title = '', $imager1 = '',$date)
     {
         $post = Post::where('title', $title)->first();
         if ($post != null) {
             return false;
         } else {
-            $this->postModel($title, $post_text, $post_url, $post_tab, $website_name, $website_url, $html_python_id, $area_id, $imager_title, $imager1);
+            $this->postModel($title, $post_text, $post_url, $post_tab, $website_name, $website_url, $html_python_id, $area_id, $imager_title, $imager1,$date);
             return true;
         }
     }
@@ -68,6 +70,50 @@ class PostApi extends Api
         }
         return $text;
     }
+
+
+    /**
+     * 解析html原始碼輸出最早的日期
+     *
+     */
+    public function html_min_date($html, $filter)
+    {
+        $crawler = new Crawler($html);
+        $filteredContent = $crawler->filter($filter);
+        $minDate = null;
+        // 循环输出所有匹配的日期
+        foreach ($filteredContent as $contentNode) {
+            $date = $contentNode->nodeValue;
+            // 假設日期格式為YYYY-MM-DD
+            if (preg_match('/\d{4}-\d{2}-\d{2}/', $date)) {
+                if ($minDate === null || $date < $minDate) {
+                    $minDate = $date;
+                }
+            }
+        }
+        return $minDate;
+    }
+
+
+    
+
+    /**
+     * 解析html原始碼輸出最早的日期
+     *
+     */
+    public function tidyDate($text)
+    {
+        $pattern = '/\d{4}-\d{2}-\d{2}/'; // 匹配日期的正則表達式
+        if (preg_match($pattern, $text, $matches)) {
+            $date = $matches[0]; // 提取匹配的日期
+            return $date; // 輸出：2024-03-20
+        } else {
+            return date("Y-m-d H:i:s");
+        }
+
+    }
+
+
 
     /**
      * 解析html原始碼輸出第一個圖片網址
@@ -175,8 +221,13 @@ class PostApi extends Api
                             $imager_url = $htmlPython->imager_url . $imager_url;
                         }
                     }
+                    $date =  $this->html_min_date($html_post, $htmlPython->event_date_filter);
+        
+                    $date =  $this->tidyDate($date);
 
-                    $this->repeat_postModel($text['text'], $post_text, $htmlPython->connect_url . $text['url'], '', $htmlPython->name, $htmlPython->url, $htmlPython->id, $htmlPython->area_id, null, $imager_url);
+
+
+                    $this->repeat_postModel($text['text'], $post_text, $htmlPython->connect_url . $text['url'], '', $htmlPython->name, $htmlPython->url, $htmlPython->id, $htmlPython->area_id, null, $imager_url,$date);
                 } else {
                     $html_post = $this->getWebpage($text['url']);
 
@@ -192,9 +243,11 @@ class PostApi extends Api
                             $imager_url = $htmlPython->imager_url . $imager_url;
                         }
                     }
+                    $date =  $this->html_min_date($html_post, $htmlPython->event_date_filter);
+        
+                    $date =  $this->tidyDate($date);
 
-
-                    $this->repeat_postModel($text['text'], $post_text, $text['url'], '', $htmlPython->name, $htmlPython->url, $htmlPython->id, $htmlPython->area_id, null, $imager_url);
+                    $this->repeat_postModel($text['text'], $post_text, $text['url'], '', $htmlPython->name, $htmlPython->url, $htmlPython->id, $htmlPython->area_id, null, $imager_url,$date);
                 }
             } catch (\Exception $e) {
             }

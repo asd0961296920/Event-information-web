@@ -28,6 +28,7 @@ return new class extends Migration
             $table->longText('imager3')->nullable();
             $table->integer('area_id');
             $table->integer('html_python_id');
+            $table->dateTime('event_date')->nullable()->comment('活動日期');
             
         });
     }

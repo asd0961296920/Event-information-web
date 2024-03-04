@@ -62,12 +62,14 @@ class PostService
 
     public function PostText(Request $request)
     {
-        // $html = $this->api->getWebpage('https://khh.travel/zh-tw/event/calendardetail/5363');
+        $html = $this->api->getWebpage('https://pthg.tainanoutlook.com/activity/589064327');
 
         // $text =  $this->api->html_second_floor($html, '.position-relative');
         // $text =  $this->api->html_imager_url_one($text, '.embed-responsive-item','jpg');
-        // $text =  $this->api->html_url($html, '.view-content', '.masonry-item');
-        // return $text;
+        $text =  $this->api->html_min_date($html, '.field-name-field-date');
+        
+        $text =  $this->api->tidyDate($text);
+        return $text;
     }
 
 

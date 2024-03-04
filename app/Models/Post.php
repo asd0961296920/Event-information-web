@@ -31,12 +31,13 @@ class Post extends Authenticatable
         'imager2',
         'imager3',
         'area_id',
+        'event_date'
     ];
 
     protected $guarded = [];
 
     protected $casts = [
-       
+    
     ];
 
     protected $hidden = [
