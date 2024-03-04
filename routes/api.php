@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\HtmlPythonController;
+use App\Http\Controllers\AreaController;
 Route::controller(Controller::class)->group(function () {
     Route::get('get_version', 'GetVersion');
 });
@@ -31,4 +32,15 @@ Route::prefix('/v1/htmlPython')->group(function () {
     Route::patch('patch/{id}', [HtmlPythonController::class, 'patch']);
     Route::delete('delete/{id}', [HtmlPythonController::class, 'delete']);
 });
+
+
+
+Route::prefix('/v1/area')->group(function () {
+    Route::get('/list', [AreaController::class, 'list']);
+    Route::get('/show/{id}', [AreaController::class, 'show']);
+});
+
+
+
+
 
