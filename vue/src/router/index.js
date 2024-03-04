@@ -11,6 +11,15 @@ const routes = [
       authRequired: true,
     },
     component: () => import("/views/main/Main"),
+  },
+  {
+    path: "/city/:id",
+    name: "page",
+    meta: {
+      title: "腳本系統",
+      authRequired: true,
+    },
+    component: () => import("/views/pageMain/PageMain"),
   }
 ];
 

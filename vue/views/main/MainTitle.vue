@@ -23,7 +23,7 @@ export default {
           // 请求成功，将数据存储在组件的数据中
           this.apiData = response.data;
           
-          console.log(response);
+          // console.log(response);
         })
         .catch((error) => {
           // 处理错误
@@ -61,7 +61,7 @@ export default {
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li> -->
         <li class="nav-item">
-          <a class="nav-link" href="#">{{item.city}}</a>
+          <a class="nav-link" href="/city/{{item.area_id}}">{{item.city}}</a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link disabled">Disabled</a>
