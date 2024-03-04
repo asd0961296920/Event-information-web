@@ -22,6 +22,7 @@ class Area extends Authenticatable
         'nation',
         'city',
         'village',
+        'upid'
     ];
 
     protected $guarded = [];
