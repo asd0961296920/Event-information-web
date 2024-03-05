@@ -28,8 +28,8 @@ export default {
           process.env.VUE_APP_APIURL +
             "/v1/post/list?page=" +
             this.page +
-            "&&number=" +
-            this.number +"&&city_id=" +id
+            "&number=" +
+            this.number +"&city_id=" +id
         )
         .then((response) => {
           // 请求成功，将数据存储在组件的数据中

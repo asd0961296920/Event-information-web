@@ -81,9 +81,9 @@ class PostService
 
         
         if($request->input('city_id')){
-            $posts = Post::where('area_id',$request->input('city_id'))->with(['html_python', 'area'])->orderBy('created_at', 'desc')->paginate($perPage, ['*'], 'page', $page);
+            $posts = Post::where('area_id',$request->input('city_id'))->with(['html_python', 'area'])->orderBy('event_date', 'desc')->paginate($perPage, ['*'], 'page', $page);
         }else{
-            $posts = Post::with(['html_python', 'area'])->orderBy('created_at', 'desc')->paginate($perPage, ['*'], 'page', $page);
+            $posts = Post::with(['html_python', 'area'])->orderBy('event_date', 'desc')->paginate($perPage, ['*'], 'page', $page);
         }
         // 取得當前頁碼
         $currentPage = $posts->currentPage();
@@ -93,11 +93,6 @@ class PostService
 
         // 取得總共的分頁數量
         $totalPages = $posts->lastPage();
-
-
-
-
-
 
 
 

@@ -49,6 +49,9 @@ export default {
 <template>
 <div v-if="apiData">
   <h2>{{ apiData.title }}</h2>
+
+<img v-if="apiData.imager1 != null" :src="apiData.imager1" :alt="apiData.title">
+
   <div v-html="post"></div>
 </div>
 </template>

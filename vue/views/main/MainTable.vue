@@ -27,7 +27,7 @@ export default {
           process.env.VUE_APP_APIURL +
             "/v1/post/list?page=" +
             this.page +
-            "&&number=" +
+            "&number=" +
             this.number
         )
         .then((response) => {
