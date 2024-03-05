@@ -1,12 +1,11 @@
 <script>
-// import textImager from "/src/layouts/easterEggs/textImager";
 import MainTitle from "/views/main/MainTitle.vue";
-import AdminFormPost from "/views/admin/element/AdminFormPost.vue";
+// import AdminFormPost from "/views/admin/element/AdminFormPost.vue";
+import AdminTable from "/views/admin/element/AdminTable.vue";
 export default {
   components: {
     MainTitle,
-    AdminFormPost
-    
+    AdminTable,
   },
   data() {
     return {
@@ -22,14 +21,9 @@ export default {
 </script>
 
 <template>
+  <div>
+    <MainTitle></MainTitle>
 
-<div>
-        <MainTitle></MainTitle>
-
-<AdminFormPost></AdminFormPost>
-  
-  
-   </div>
-
-  
+    <AdminTable></AdminTable>
+  </div>
 </template>
