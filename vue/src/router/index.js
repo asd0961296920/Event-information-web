@@ -29,6 +29,15 @@ const routes = [
       authRequired: true,
     },
     component: () => import("/views/page/PageMain"),
+  },
+  {
+    path: "/admin",
+    name: "admin",
+    meta: {
+      title: "後台",
+      authRequired: true,
+    },
+    component: () => import("/views/admin/AdminMain"),
   }
 ];
 

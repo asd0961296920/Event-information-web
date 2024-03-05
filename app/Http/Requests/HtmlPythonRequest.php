@@ -40,9 +40,10 @@ class HtmlPythonRequest extends FormRequest
             'imager_url' => 'sometimes|string|nullable',
             'imager_bool' => 'required|boolean',
             'area_id' => 'required|integer',
+            'event_date_filter' => 'sometimes|string|nullable',
         ];
     }
-
+    
     public function attributes()
     {
         return [

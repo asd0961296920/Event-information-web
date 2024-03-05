@@ -21,7 +21,7 @@ class PostApi extends Api
      * 建立post資料
      *
      */
-    public function postModel($title, $post_text, $post_url, $post_tab, $website_name, $website_url, $html_python_id, $area_id = 0, $imager_title = '', $imager1 = '',$date)
+    public function postModel($title, $post_text, $post_url, $post_tab, $website_name, $website_url, $html_python_id, $area_id = 0, $imager_title = '', $imager1 = '', $date)
     {
         $post = new Post();
         $post->title = $title;
@@ -43,13 +43,13 @@ class PostApi extends Api
      * 檢查post是否重複，不重複在建立
      *
      */
-    public function repeat_postModel($title, $post_text, $post_url, $post_tab, $website_name, $website_url, $html_python_id, $area_id = 0, $imager_title = '', $imager1 = '',$date)
+    public function repeat_postModel($title, $post_text, $post_url, $post_tab, $website_name, $website_url, $html_python_id, $area_id = 0, $imager_title = '', $imager1 = '', $date)
     {
         $post = Post::where('title', $title)->first();
         if ($post != null) {
             return false;
         } else {
-            $this->postModel($title, $post_text, $post_url, $post_tab, $website_name, $website_url, $html_python_id, $area_id, $imager_title, $imager1,$date);
+            $this->postModel($title, $post_text, $post_url, $post_tab, $website_name, $website_url, $html_python_id, $area_id, $imager_title, $imager1, $date);
             return true;
         }
     }
@@ -95,7 +95,7 @@ class PostApi extends Api
     }
 
 
-    
+
 
     /**
      * 解析html原始碼輸出最早的日期
@@ -110,7 +110,6 @@ class PostApi extends Api
         } else {
             return date("Y-m-d H:i:s");
         }
-
     }
 
 
@@ -221,13 +220,16 @@ class PostApi extends Api
                             $imager_url = $htmlPython->imager_url . $imager_url;
                         }
                     }
-                    $date =  $this->html_min_date($html_post, $htmlPython->event_date_filter);
-        
-                    $date =  $this->tidyDate($date);
+                    $date = date("Y-m-d H:i:s");
+                    if ($htmlPython->event_date_filter != null) {
+                        $date =  $this->html_min_date($html_post, $htmlPython->event_date_filter);
+
+                        $date =  $this->tidyDate($date);
+                    }
 
 
 
-                    $this->repeat_postModel($text['text'], $post_text, $htmlPython->connect_url . $text['url'], '', $htmlPython->name, $htmlPython->url, $htmlPython->id, $htmlPython->area_id, null, $imager_url,$date);
+                    $this->repeat_postModel($text['text'], $post_text, $htmlPython->connect_url . $text['url'], '', $htmlPython->name, $htmlPython->url, $htmlPython->id, $htmlPython->area_id, null, $imager_url, $date);
                 } else {
                     $html_post = $this->getWebpage($text['url']);
 
@@ -243,11 +245,14 @@ class PostApi extends Api
                             $imager_url = $htmlPython->imager_url . $imager_url;
                         }
                     }
-                    $date =  $this->html_min_date($html_post, $htmlPython->event_date_filter);
-        
-                    $date =  $this->tidyDate($date);
+                    $date = date("Y-m-d H:i:s");
+                    if ($htmlPython->event_date_filter != null) {
+                        $date =  $this->html_min_date($html_post, $htmlPython->event_date_filter);
 
-                    $this->repeat_postModel($text['text'], $post_text, $text['url'], '', $htmlPython->name, $htmlPython->url, $htmlPython->id, $htmlPython->area_id, null, $imager_url,$date);
+                        $date =  $this->tidyDate($date);
+                    }
+
+                    $this->repeat_postModel($text['text'], $post_text, $text['url'], '', $htmlPython->name, $htmlPython->url, $htmlPython->id, $htmlPython->area_id, null, $imager_url, $date);
                 }
             } catch (\Exception $e) {
             }

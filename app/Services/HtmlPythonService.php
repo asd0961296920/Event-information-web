@@ -36,7 +36,7 @@ class HtmlPythonService
     public function post(HtmlPythonRequest $request)
     {
         $HtmlPython = new HtmlPython();
-        $HtmlPython = $request->all();
+        $HtmlPython->fill($request->all())->save();
         return $HtmlPython;
     }
 
