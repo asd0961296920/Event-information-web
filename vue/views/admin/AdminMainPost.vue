@@ -29,7 +29,6 @@ export default {
       <AdminFormPost></AdminFormPost>
 
 
-
    
   </div>
 </template>

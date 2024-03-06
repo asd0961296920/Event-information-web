@@ -133,12 +133,20 @@ class PostService
                         $imager_url = $request->input('imager_url') . $imager_url;
                     }
                 }
+                $date = date("Y-m-d H:i:s");
+                if ($request->input('event_date_filter') != null) {
+                    $date =  $this->api->html_min_date($html_post, $request->input('event_date_filter'));
+
+                    $date =  $this->api->tidyDate($date);
+                }
+
 
                 $text[] = [
                     'title' => $table['text'],
                     'body' => $post_text,
                     'imager' => $imager_url,
-                    'url' => $table['url']
+                    'url' => $table['url'],
+                    'date'=>$date
                 ];
             } else {
                 $html_post = $this->api->getWebpage($table['url']);
@@ -155,11 +163,18 @@ class PostService
                         $imager_url = $request->input('imager_url') . $imager_url;
                     }
                 }
+                $date = date("Y-m-d H:i:s");
+                if ($request->input('event_date_filter') != null) {
+                    $date =  $this->api->html_min_date($html_post, $request->input('event_date_filter'));
+
+                    $date =  $this->api->tidyDate($date);
+                }
                 $text[] = [
                     'title' => $table['text'],
                     'body' => $post_text,
                     'imager' => $imager_url,
-                    'url' => $table['url']
+                    'url' => $table['url'],
+                    'date'=>$date
                 ];
             }
         }

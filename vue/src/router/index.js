@@ -47,6 +47,18 @@ const routes = [
       authRequired: true,
     },
     component: () => import("/views/admin/AdminMainPost"),
+  },
+  {
+    path: "/admin/test",
+    name: "test",
+    meta: {
+      title: "測試頁面",
+      authRequired: true,
+    },
+    component: () => import("/views/admin/element/AdminTest"),
+    props: route => ({
+      apiData: JSON.parse(route.query.apiData)
+    })
   }
 ];
 

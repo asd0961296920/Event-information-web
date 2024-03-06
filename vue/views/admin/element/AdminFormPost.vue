@@ -1,6 +1,10 @@
 <script>
 import axios from "axios";
+
 export default {
+    components: {
+
+  },
   data() {
     return {
       apiData: {
@@ -53,7 +57,7 @@ export default {
 
     scriptEnable() {
       // 发起 post 请求
-      console.log(this.apiData);
+      // console.log(this.apiData);
       axios
         .post(process.env.VUE_APP_APIURL + `/v1/htmlPython/post`, {
           name: this.apiData.name,
@@ -106,6 +110,14 @@ export default {
       // 切換 enable 的值
      this.apiData.imager_bool = !this.apiData.imager_bool;
     },
+
+    testClick(url){
+  const queryString = encodeURIComponent(JSON.stringify(this.apiData));
+  const newUrl = `${url}?apiData=${queryString}`;
+window.open(newUrl, '_blank');
+
+}
+
 
   },
 };
@@ -279,6 +291,14 @@ export default {
         新增爬取網站
       </button>
 
+      <button type="button" @click="testClick('/admin/test')" class="btn btn-outline-secondary m-1">
+        測試爬取效果
+      </button>
+
     </form>
+
+
+
+
   </div>
 </template>
