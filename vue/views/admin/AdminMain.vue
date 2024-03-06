@@ -14,7 +14,11 @@ export default {
       start: null,
     };
   },
-
+  methods: {
+    testClick() {
+      window.location.href = "/admin/post_text";
+    },
+  },
   // 计算属性，用于根据搜索条件过滤数据
   computed: {},
 };
@@ -23,7 +27,13 @@ export default {
 <template>
   <div>
     <MainTitle></MainTitle>
-
+    <button
+      type="button"
+      @click="testClick()"
+      class="btn btn-outline-secondary m-1"
+    >
+      單獨測試環境
+    </button>
     <AdminTable></AdminTable>
   </div>
 </template>

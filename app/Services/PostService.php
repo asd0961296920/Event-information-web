@@ -62,14 +62,29 @@ class PostService
 
     public function PostText(Request $request)
     {
-        $html = $this->api->getWebpage('https://pthg.tainanoutlook.com/activity/589064327');
+        $html = $this->api->getWebpage($request->input('url'));
+        if($request->input('tag') == 'title'){
+            return $this->api->html_url($html, $request->input('body_filter'), $request->input('title_filter'));
+        }
+        if($request->input('tag') == 'text'){
+            return $this->api->html_text($html, $request->input('body_filter'));
+        }
+        if($request->input('tag') == 'imager'){
+            $data =  $this->api->html_imager_url_one($html, $request->input('body_filter'), 'jpg');
+            if ($data == null) {
+                $data =  $this->api->html_imager_url_one($html, $request->input('body_filter'), 'png');
+            }
+            return $data;
+        }
+        if($request->input('tag') == 'date'){
 
-        // $text =  $this->api->html_second_floor($html, '.position-relative');
-        // $text =  $this->api->html_imager_url_one($text, '.embed-responsive-item','jpg');
-        $text =  $this->api->html_min_date($html, '.field-name-field-date');
-        
-        $text =  $this->api->tidyDate($text);
-        return $text;
+            $data =  $this->api->html_min_date($html, $request->input('body_filter'));
+
+            $data =  $this->api->tidyDate($data);
+            return $data;
+
+        }
+
     }
 
 

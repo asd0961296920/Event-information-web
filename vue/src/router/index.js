@@ -59,6 +59,15 @@ const routes = [
     props: route => ({
       apiData: JSON.parse(route.query.apiData)
     })
+  },
+  {
+    path: "/admin/post_text",
+    name: "post_text",
+    meta: {
+      title: "爬取單獨測試",
+      authRequired: true,
+    },
+    component: () => import("/views/admin/AdminMainOneTest"),
   }
 ];
 
