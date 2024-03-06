@@ -18,6 +18,9 @@ export default {
     testClick() {
       window.location.href = "/admin/post_text";
     },
+      newClick() {
+      window.location.href = "/admin/post";
+    },
   },
   // 计算属性，用于根据搜索条件过滤数据
   computed: {},
@@ -33,6 +36,13 @@ export default {
       class="btn btn-outline-secondary m-1"
     >
       單獨測試環境
+    </button>
+      <button
+      type="button"
+      @click="newClick()"
+      class="btn btn-outline-secondary m-1"
+    >
+      新增網站
     </button>
     <AdminTable></AdminTable>
   </div>
