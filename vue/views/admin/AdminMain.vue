@@ -16,7 +16,8 @@ export default {
   },
   methods: {
     testClick() {
-      window.location.href = "/admin/post_text";
+      window.open("/admin/post_text");
+      // window.location.href = "/admin/post_text";
     },
       newClick() {
       window.location.href = "/admin/post";
