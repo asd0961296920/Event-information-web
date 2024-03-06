@@ -12,7 +12,7 @@ class PostController extends Controller
         $action = "取得資料";
         $apiType = "example-get_data";
         $service = new PostService();
-        $response = $service->PostData($request);
+        $response = $service->PostDataMain($request);
         return $response;
     }
 

@@ -19,6 +19,45 @@ class PostService
     {
         $this->api = new PostApi();
     }
+    public function PostDataMain(Request $request)
+    {
+        $processes = [];
+        $pid1 = pcntl_fork();
+        
+        if ($pid1 == -1) {
+            die('Could not fork.');
+        } elseif ($pid1) {
+            // 父進程
+            $processes[] = $pid1;
+        } else {
+        
+            //以下是該子進程主要邏輯
+            $response = response()->json('成功')->setStatusCode(200);
+            $response->send();
+            exit();
+        }
+        
+        
+        $pid2 = pcntl_fork();
+        
+        if ($pid2 == -1) {
+            die('Could not fork.');
+        } elseif ($pid2) {
+            // 父進程
+            $processes[] = $pid2;
+        } else {
+        
+            $this->PostData($request);
+        
+            exit();
+        }
+        
+        // 父進程等待子進程完成
+        foreach ($processes as $pid) {
+            pcntl_waitpid($pid, $status);
+        }
+
+    }
 
     public function PostData(Request $request)
     {
