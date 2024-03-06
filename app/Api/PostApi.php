@@ -108,7 +108,7 @@ class PostApi extends Api
             $date = $matches[0]; // 提取匹配的日期
             return $date; // 輸出：2024-03-20
         } else {
-            return date("Y-m-d H:i:s");
+            return null;
         }
     }
 
@@ -220,7 +220,7 @@ class PostApi extends Api
                             $imager_url = $htmlPython->imager_url . $imager_url;
                         }
                     }
-                    $date = date("Y-m-d H:i:s");
+                    $date = null;
                     if ($htmlPython->event_date_filter != null) {
                         $date =  $this->html_min_date($html_post, $htmlPython->event_date_filter);
 
@@ -245,7 +245,7 @@ class PostApi extends Api
                             $imager_url = $htmlPython->imager_url . $imager_url;
                         }
                     }
-                    $date = date("Y-m-d H:i:s");
+                    $date = null;
                     if ($htmlPython->event_date_filter != null) {
                         $date =  $this->html_min_date($html_post, $htmlPython->event_date_filter);
 

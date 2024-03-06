@@ -187,7 +187,7 @@ class PostService
                         $imager_url = $request->input('imager_url') . $imager_url;
                     }
                 }
-                $date = date("Y-m-d H:i:s");
+                $date = null;
                 if ($request->input('event_date_filter') != null) {
                     $date =  $this->api->html_min_date($html_post, $request->input('event_date_filter'));
 
@@ -217,7 +217,7 @@ class PostService
                         $imager_url = $request->input('imager_url') . $imager_url;
                     }
                 }
-                $date = date("Y-m-d H:i:s");
+                $date = null;
                 if ($request->input('event_date_filter') != null) {
                     $date =  $this->api->html_min_date($html_post, $request->input('event_date_filter'));
 
