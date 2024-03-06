@@ -115,6 +115,88 @@ export default {
   <div>
     <hr class="my-2" />
     <form class="needs-validation" @submit.prevent="scriptEnable">
+      <div class="container">
+  <div class="row">
+<div class="col">
+
+
+
+
+
+
+
+
+<div class="mb-3 row">
+  <label for="inputPassword" class="col-sm-3 col-form-label"
+    >是否啟用</label
+  >
+  <div class="col-sm-9">
+    <div class="form-check form-switch m-2">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        role="switch"
+        id="flexSwitchCheckDefault"
+        :checked="apiData.enble"
+        @change="enble"
+      />
+    </div>
+  </div>
+</div>
+
+<div class="mb-3 row">
+  <label for="inputPassword" class="col-sm-3 col-form-label"
+    >要不要圖片</label
+  >
+  <div class="col-sm-9">
+    <div class="form-check form-switch m-2">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        role="switch"
+        id="flexSwitchCheckDefault"
+        :checked="apiData.imager_bool"
+        @change="imager_bool"
+      />
+    </div>
+  </div>
+</div>
+
+
+
+<div class="mb-3 row">
+  <label for="inputPassword" class="col-sm-3 col-form-label"
+    >要不要翻頁</label
+  >
+  <div class="col-sm-9">
+    <div class="form-check form-switch m-2">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        role="switch"
+        id="flexSwitchCheckDefault"
+        :checked="apiData.page_bool"
+        @change="page_bool"
+      />
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="mb-3">
   <label for="formGroupExampleInput" class="form-label">爬取網站名稱<span style="color: red;">（必填）</span></label>
   <input type="text" v-model="apiData.name" required class="form-control" id="formGroupExampleInput" placeholder="請輸入名稱">
@@ -144,7 +226,8 @@ export default {
   <label for="formGroupExampleInput" class="form-label">文章內容定位<span style="color: red;">（必填）</span></label>
   <input type="text" v-model="apiData.post_filter" required class="form-control" id="formGroupExampleInput" placeholder="文章內容定位">
 </div>
-
+</div>
+<div class="col">
 <div class="mb-3">
   <label for="formGroupExampleInput" class="form-label">列表翻頁變數</label>
   <input type="text" v-model="apiData.table_page"  class="form-control" id="formGroupExampleInput" placeholder="列表翻頁變數">
@@ -188,71 +271,14 @@ export default {
 
 
 
-
-
-
-
-
-
-<div class="mb-3 row">
-  <label for="inputPassword" class="col-sm-2 col-form-label"
-    >要不要翻頁</label
-  >
-  <div class="col-sm-10">
-    <div class="form-check form-switch m-2">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        role="switch"
-        id="flexSwitchCheckDefault"
-        :checked="apiData.page_bool"
-        @change="page_bool"
-      />
-    </div>
+</div>
   </div>
 </div>
-
-<div class="mb-3 row">
-  <label for="inputPassword" class="col-sm-2 col-form-label"
-    >是否啟用</label
-  >
-  <div class="col-sm-10">
-    <div class="form-check form-switch m-2">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        role="switch"
-        id="flexSwitchCheckDefault"
-        :checked="apiData.enble"
-        @change="enble"
-      />
-    </div>
-  </div>
-</div>
-
-<div class="mb-3 row">
-  <label for="inputPassword" class="col-sm-2 col-form-label"
-    >要不要圖片</label
-  >
-  <div class="col-sm-10">
-    <div class="form-check form-switch m-2">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        role="switch"
-        id="flexSwitchCheckDefault"
-        :checked="apiData.imager_bool"
-        @change="imager_bool"
-      />
-    </div>
-  </div>
-</div>
-
-
 
       <button type="submit" class="btn btn-outline-secondary m-1">
-        新增腳本
+        新增爬取網站
       </button>
+
     </form>
   </div>
 </template>

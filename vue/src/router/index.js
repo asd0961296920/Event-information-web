@@ -38,6 +38,15 @@ const routes = [
       authRequired: true,
     },
     component: () => import("/views/admin/AdminMain"),
+  },
+  {
+    path: "/admin/post",
+    name: "post",
+    meta: {
+      title: "新增爬取網站",
+      authRequired: true,
+    },
+    component: () => import("/views/admin/AdminMainPost"),
   }
 ];
 
