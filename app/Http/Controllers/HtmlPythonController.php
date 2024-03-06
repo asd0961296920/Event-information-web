@@ -14,7 +14,7 @@ class HtmlPythonController extends Controller
         return $response;
     }
 
-    public function show(HtmlPythonRequest $request,$id)
+    public function show(Request $request,$id)
     {
         $service = new HtmlPythonService();
         $response = $service->show($request,$id);
@@ -29,7 +29,7 @@ class HtmlPythonController extends Controller
         return $response;
 
     }
-    public function patch(Request $request,$id)
+    public function patch(HtmlPythonRequest $request,$id)
     {
         $service = new HtmlPythonService();
         $response = $service->patch($request,$id);

@@ -74,6 +74,7 @@ window.location.href = "/admin/update/"+id;
           <th scope="col">編號</th>
           <th scope="col">名稱</th>
           <th scope="col">網址</th>
+          <th scope="col">啟用狀態</th>
           <th scope="col">按鈕</th>
 
         </tr>
@@ -83,6 +84,10 @@ window.location.href = "/admin/update/"+id;
           <td>{{item.id}}</td>
           <td>{{item.name}}</td>
           <td>{{item.url}}</td>
+           <td>
+            <span v-if="item.enble" style="color: green;">啟用</span>
+            <span v-else style="color: red;">未啟用</span>
+          </td>
 <td><button type="button" class="btn btn-outline-info" @click="WebClick(item.id)" >修改</button>
 <button type="button" class="btn btn-outline-info" @click="Delete(item.id)" >刪除</button>
 </td>

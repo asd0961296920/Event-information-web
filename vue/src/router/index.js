@@ -68,6 +68,15 @@ const routes = [
       authRequired: true,
     },
     component: () => import("/views/admin/AdminMainOneTest"),
+  },
+  {
+    path: "/admin/update/:id",
+    name: "update",
+    meta: {
+      title: "修改爬取網站",
+      authRequired: true,
+    },
+    component: () => import("/views/admin/AdminMainUpdate"),
   }
 ];
 

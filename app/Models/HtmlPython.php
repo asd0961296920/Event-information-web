@@ -21,7 +21,23 @@ class HtmlPython extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-
+        'name',
+        'title_filter',
+        'body_filter',
+        'imager1_filter',
+        'imager2_filter',
+        'imager3_filter',
+        'url',
+        'area_id',
+        'connect_url',
+        'post_filter',
+        'table_page',
+        'page_bool',
+        'page',
+        'enble',
+        'imager_url',
+        'imager_bool',
+        'event_date_filter',
     ];
 
     protected $guarded = [];

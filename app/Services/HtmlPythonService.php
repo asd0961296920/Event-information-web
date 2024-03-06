@@ -43,7 +43,7 @@ class HtmlPythonService
     public function patch(HtmlPythonRequest $request, $id)
     {
         $HtmlPython =   HtmlPython::where('id', $id)->first();
-        $HtmlPython = $request->all();
+        $HtmlPython->fill($request->all())->save();
         return $HtmlPython;
     }
 

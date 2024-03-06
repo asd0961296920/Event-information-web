@@ -1,11 +1,11 @@
 <script>
 import MainTitle from "/views/main/MainTitle.vue";
 // import AdminFormPost from "/views/admin/element/AdminFormPost.vue";
-import AdminTable from "/views/admin/element/AdminTable.vue";
+import AdminFormUpdate from "/views/admin/element/AdminFormUpdate.vue";
 export default {
   components: {
     MainTitle,
-    AdminTable,
+    AdminFormUpdate,
   },
   data() {
     return {
@@ -24,6 +24,6 @@ export default {
   <div>
     <MainTitle></MainTitle>
 
-    <AdminTable></AdminTable>
+    <AdminFormUpdate></AdminFormUpdate>
   </div>
 </template>
