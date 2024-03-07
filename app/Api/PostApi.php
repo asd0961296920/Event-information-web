@@ -87,7 +87,7 @@ class PostApi extends Api
 
 
     /**
-     * 解析html原始碼輸出最早的日期
+     * 解析html原始碼輸出最晚的日期
      *
      */
     public function html_min_date($html, $filter)
@@ -100,7 +100,7 @@ class PostApi extends Api
             $date = $contentNode->nodeValue;
             // 假設日期格式為YYYY-MM-DD
             if (preg_match('/\d{4}-\d{2}-\d{2}/', $date) || preg_match('/\d{4}\/\d{2}\/\d{2}/', $date)) {
-                if ($minDate === null || $date < $minDate) {
+                if ($minDate === null || $date > $minDate) {
                     $minDate = $date;
                 }
             }

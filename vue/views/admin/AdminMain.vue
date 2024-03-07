@@ -2,6 +2,7 @@
 import MainTitle from "/views/main/MainTitle.vue";
 // import AdminFormPost from "/views/admin/element/AdminFormPost.vue";
 import AdminTable from "/views/admin/element/AdminTable.vue";
+import axios from "axios";
 export default {
   components: {
     MainTitle,
@@ -15,6 +16,26 @@ export default {
     };
   },
   methods: {
+    postData() {
+      // 发起GET请求
+      axios
+        .get(
+          process.env.VUE_APP_APIURL +
+            "/v1/automatic/post" 
+        )
+        .then((response) => {
+          // 请求成功，将数据存储在组件的数据中
+           alert('成功');
+          
+          console.log(response);
+        })
+        .catch((error) => {
+          // 处理错误
+          console.error("Error fetching data:", error);
+        });
+    },
+
+
     testClick() {
       window.open("/admin/post_text");
       // window.location.href = "/admin/post_text";
@@ -44,6 +65,13 @@ export default {
       class="btn btn-outline-secondary m-1"
     >
       新增網站
+    </button>
+      <button
+      type="button"
+      @click="postData()"
+      class="btn btn-outline-secondary m-1"
+    >
+      執行爬蟲
     </button>
     <AdminTable></AdminTable>
   </div>

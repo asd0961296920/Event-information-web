@@ -32,9 +32,10 @@ class PostService
         } else {
         
             //以下是該子進程主要邏輯
-            $response = response()->json('成功')->setStatusCode(200);
-            $response->send();
-            exit();
+            // $response = response()->json(['狀態'=>'成功'])->setStatusCode(200);
+            // $response->send();
+            // exit();
+            return '成功';
         }
         
         
