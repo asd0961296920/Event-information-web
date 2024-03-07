@@ -2,11 +2,11 @@
 import axios from "axios";
 // import textImager from "/src/layouts/easterEggs/textImager";
 import Table from "/views/main/components/Table.vue";
-import Page from "/views/main/components/Page.vue";
+import PageNumber from "/views/main/components/PageNumber.vue";
 export default {
     components: {
     Table,
-    Page
+    PageNumber
   },
   data() {
     return {
@@ -66,7 +66,7 @@ window.location.href = "/page/"+id;
   <div>
     <Table :apiData="apiData" />
 
- <Page :pageData="pageData" @handlePageClick="PageData" />
+ <PageNumber :pageData="pageData" @handlePageClick="PageData" />
 
 
   </div>

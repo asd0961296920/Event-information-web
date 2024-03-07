@@ -48,6 +48,12 @@ window.location.href = "/page/"+id;
 
 <template>
   <div>
+    <div class="container">
+  <div class="row">
+    <div class="col">
+
+    </div>
+    <div class="col">
 <nav aria-label="Page navigation example">
   <ul class="pagination">
     <li class="page-item">
@@ -80,6 +86,13 @@ window.location.href = "/page/"+id;
     </li>
   </ul>
 </nav>
+
+    </div>
+    <div class="col">
+
+    </div>
+  </div>
+</div>
 
 
   </div>

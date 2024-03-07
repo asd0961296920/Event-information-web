@@ -24,7 +24,22 @@ export default {
 
 <div>
       <MainTitle></MainTitle>
+<div class="row mt-3">
+    <div class="col">
+Column
+    </div>
+ </div>
+  <div class="row mt-3">
+
+    <div class="col">
     <MainTable></MainTable>
+    </div>
+    <div class="col-2">
+      Column
+    </div>
+  </div>
+
+
   
   
    </div>
