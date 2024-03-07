@@ -55,6 +55,20 @@ class PostApi extends Api
     }
 
     /**
+     * 檢查文章標題是否重複
+     *
+     */
+    public function repeat($title)
+    {
+        $post = Post::where('title', $title)->first();
+        if ($post != null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
      * 解析html原始碼輸出文字
      *
      */
@@ -205,54 +219,61 @@ class PostApi extends Api
 
         foreach ($texts as $text) {
             try {
-                if ($htmlPython->connect_url != null) {
-                    $html_post = $this->getWebpage($htmlPython->connect_url . $text['url']);
+                if ($this->repeat($text['text'])) {
 
-                    $post_text =  $this->html_text($html_post, $htmlPython->post_filter);
-                    $imager_url = null;
-                    if ($htmlPython->imager_bool && $htmlPython->imager1_filter != null) {
-                        $imager_html =  $this->html_second_floor($html_post, $htmlPython->post_filter);
-                        $imager_url =  $this->html_imager_url_one($imager_html, $htmlPython->imager1_filter, 'jpg');
-                        if ($imager_url == null) {
-                            $imager_url =  $this->html_imager_url_one($imager_html, $htmlPython->imager1_filter, 'png');
+
+                    if ($htmlPython->connect_url != null) {
+                        $this->log_request([], 'post_text', $htmlPython->connect_url . $text['url'], [], '網站爬蟲api文章');
+                        $html_post = $this->getWebpage($htmlPython->connect_url . $text['url']);
+
+                        $post_text =  $this->html_text($html_post, $htmlPython->post_filter);
+                        $imager_url = null;
+                        if ($htmlPython->imager_bool && $htmlPython->imager1_filter != null) {
+                            $imager_html =  $this->html_second_floor($html_post, $htmlPython->post_filter);
+                            $imager_url =  $this->html_imager_url_one($imager_html, $htmlPython->imager1_filter, 'jpg');
+                            if ($imager_url == null) {
+                                $imager_url =  $this->html_imager_url_one($imager_html, $htmlPython->imager1_filter, 'png');
+                            }
+                            if ($htmlPython->imager_url != null && $imager_url != null) {
+                                $imager_url = $htmlPython->imager_url . $imager_url;
+                            }
                         }
-                        if ($htmlPython->imager_url != null && $imager_url != null) {
-                            $imager_url = $htmlPython->imager_url . $imager_url;
+                        $date = null;
+                        if ($htmlPython->event_date_filter != null) {
+                            $date =  $this->html_min_date($html_post, $htmlPython->event_date_filter);
+
+                            $date =  $this->tidyDate($date);
                         }
-                    }
-                    $date = null;
-                    if ($htmlPython->event_date_filter != null) {
-                        $date =  $this->html_min_date($html_post, $htmlPython->event_date_filter);
-
-                        $date =  $this->tidyDate($date);
-                    }
 
 
 
-                    $this->repeat_postModel($text['text'], $post_text, $htmlPython->connect_url . $text['url'], '', $htmlPython->name, $htmlPython->url, $htmlPython->id, $htmlPython->area_id, null, $imager_url, $date);
-                } else {
-                    $html_post = $this->getWebpage($text['url']);
+                        $this->repeat_postModel($text['text'], $post_text, $htmlPython->connect_url . $text['url'], '', $htmlPython->name, $htmlPython->url, $htmlPython->id, $htmlPython->area_id, null, $imager_url, $date);
+                    } else {
+                        $this->log_request([], 'post_text', $text['url'], [], '網站爬蟲api文章');
+                        $html_post = $this->getWebpage($text['url']);
 
-                    $post_text =  $this->html_text($html_post, $htmlPython->post_filter);
-                    $imager_url = null;
-                    if ($htmlPython->imager_bool && $htmlPython->imager1_filter != null) {
-                        $imager_html =  $this->html_second_floor($html_post, $htmlPython->post_filter);
-                        $imager_url =  $this->html_imager_url_one($imager_html, $htmlPython->imager1_filter, 'jpg');
-                        if ($imager_url == null) {
-                            $imager_url =  $this->html_imager_url_one($imager_html, $htmlPython->imager1_filter, 'png');
+                        $post_text =  $this->html_text($html_post, $htmlPython->post_filter);
+                        $imager_url = null;
+                        if ($htmlPython->imager_bool && $htmlPython->imager1_filter != null) {
+                            $imager_html =  $this->html_second_floor($html_post, $htmlPython->post_filter);
+                            $imager_url =  $this->html_imager_url_one($imager_html, $htmlPython->imager1_filter, 'jpg');
+                            if ($imager_url == null) {
+                                $imager_url =  $this->html_imager_url_one($imager_html, $htmlPython->imager1_filter, 'png');
+                            }
+                            if ($htmlPython->imager_url != null && $imager_url != null) {
+                                $imager_url = $htmlPython->imager_url . $imager_url;
+                            }
                         }
-                        if ($htmlPython->imager_url != null && $imager_url != null) {
-                            $imager_url = $htmlPython->imager_url . $imager_url;
+                        $date = null;
+                        if ($htmlPython->event_date_filter != null) {
+                            $date =  $this->html_min_date($html_post, $htmlPython->event_date_filter);
+
+                            $date =  $this->tidyDate($date);
                         }
-                    }
-                    $date = null;
-                    if ($htmlPython->event_date_filter != null) {
-                        $date =  $this->html_min_date($html_post, $htmlPython->event_date_filter);
 
-                        $date =  $this->tidyDate($date);
+                        $this->repeat_postModel($text['text'], $post_text, $text['url'], '', $htmlPython->name, $htmlPython->url, $htmlPython->id, $htmlPython->area_id, null, $imager_url, $date);
+                        $this->log_response($post_text, 'post_text', 200, '網站爬蟲api文章', []);
                     }
-
-                    $this->repeat_postModel($text['text'], $post_text, $text['url'], '', $htmlPython->name, $htmlPython->url, $htmlPython->id, $htmlPython->area_id, null, $imager_url, $date);
                 }
             } catch (\Exception $e) {
             }

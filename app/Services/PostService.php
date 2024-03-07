@@ -69,6 +69,7 @@ class PostService
 
 
                 if ($htmlPython->enble) {
+                    $this->api->log_request([$htmlPython->url],'PostData',$htmlPython->url,[],'網站爬蟲列表');
                     $html = $this->api->getWebpage($htmlPython->url);
                     $texts =  $this->api->html_url($html, $htmlPython->body_filter, $htmlPython->title_filter);
                     $this->api->post_text($texts, $htmlPython);
@@ -88,6 +89,7 @@ class PostService
                             }
                         }
                     }
+                    $this->api->log_response($texts,'PostData',200,'網站爬蟲列表',[]);
                 }
             } catch (\Exception $e) {
             }
