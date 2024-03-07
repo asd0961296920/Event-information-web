@@ -1,5 +1,5 @@
 <script>
-import MainTitle from "/views/main/MainTitle.vue";
+import MainTitle from "/views/main/components/MainTitle.vue";
 // import AdminFormPost from "/views/admin/element/AdminFormPost.vue";
 import AdminFormUpdate from "/views/admin/element/AdminFormUpdate.vue";
 export default {

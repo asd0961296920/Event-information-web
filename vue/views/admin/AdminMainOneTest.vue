@@ -1,5 +1,5 @@
 <script>
-import MainTitle from "/views/main/MainTitle.vue";
+import MainTitle from "/views/main/components/MainTitle.vue";
 import axios from "axios";
 export default {
   components: {

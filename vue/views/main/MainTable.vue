@@ -1,7 +1,7 @@
 <script>
 import axios from "axios";
 // import textImager from "/src/layouts/easterEggs/textImager";
-import Table from "/views/Table.vue";
+import Table from "/views/main/components/Table.vue";
 export default {
     components: {
     Table

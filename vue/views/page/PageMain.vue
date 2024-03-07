@@ -1,7 +1,7 @@
 <script>
 // import textImager from "/src/layouts/easterEggs/textImager";
 import PageBody from "/views/page/PageBody.vue";
-import MainTitle from "/views/main/MainTitle.vue";
+import MainTitle from "/views/main/components/MainTitle.vue";
 export default {
   components: {
     PageBody,
