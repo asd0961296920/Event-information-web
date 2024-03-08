@@ -3,7 +3,9 @@ import axios from "axios";
 export default {
   data() {
     return {
-      apiData: null,
+      Data: null,
+     apiData: null,
+      keyword:null
     };
   },
 
@@ -31,6 +33,12 @@ export default {
         });
     },
 
+
+    search() {
+this.keyword = this.Data;
+    this.$emit('search', this.keyword);
+
+    },
     city(id) {
 window.location.href = "/city/"+id;
 
@@ -55,18 +63,14 @@ window.location.href = "/city/"+id;
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0" v-for="(item, index) in apiData" :key="index">
-        <!-- <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li> -->
+
         <li class="nav-item">
           <a class="nav-link" href="#" @click="city(item.id)">{{item.city}}</a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
-        </li> -->
+
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="請輸入關鍵字" aria-label="Search">
+      <form class="d-flex" @submit.prevent="search">
+        <input class="form-control me-2" type="search" placeholder="請輸入關鍵字" aria-label="Search" v-model="Data">
         <button class="btn btn-outline-success" type="submit">查詢</button>
       </form>
     </div>

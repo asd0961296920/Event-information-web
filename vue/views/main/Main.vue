@@ -12,8 +12,16 @@ export default {
       searchQuery: "",
       isChecked: false,
       start: null,
+      keyword:null
     };
   },
+    methods: {
+    search(data){
+      this.keyword = data;
+    }
+
+
+    },
 
   // 计算属性，用于根据搜索条件过滤数据
   computed: {},
@@ -23,7 +31,8 @@ export default {
 <template>
 
 <div>
-      <MainTitle></MainTitle>
+
+          <MainTitle @search="search" />
 <div class="row mt-3">
     <div class="col">
 Column
@@ -32,7 +41,8 @@ Column
   <div class="row mt-3">
 
     <div class="col">
-    <MainTable></MainTable>
+    <MainTable :keyword="keyword" />
+
     </div>
     <div class="col-2">
       Column

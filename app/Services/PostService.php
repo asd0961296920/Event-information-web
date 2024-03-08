@@ -133,23 +133,31 @@ class PostService
     public function GetData(Request $request)
     {
 
+        $posts = Post::query();
+        if($request->input('city_id')){
+            $posts->where('area_id', $request->input('city_id'));
+        }
+        if ($request->input('keyword')) {
+            $keyword = '%' . $request->input('keyword') . '%';
+            $posts->where('title', 'like', $keyword);
+        }
+        
         $perPage = $request->input('number');
         $page = $request->input('page');
-
         
-        if($request->input('city_id')){
-            $posts = Post::where('area_id',$request->input('city_id'))->with(['html_python', 'area'])->orderBy('event_date', 'desc')->paginate($perPage, ['*'], 'page', $page);
-        }else{
-            $posts = Post::with(['html_python', 'area'])->orderBy('event_date', 'desc')->paginate($perPage, ['*'], 'page', $page);
-        }
+        $posts = $posts->with(['html_python', 'area'])
+            ->orderBy('event_date', 'desc')
+            ->paginate($perPage, ['*'], 'page', $page);
+        
         // 取得當前頁碼
         $currentPage = $posts->currentPage();
-
+        
         // 取得總共的項目數量
         $totalItems = $posts->total();
-
+        
         // 取得總共的分頁數量
         $totalPages = $posts->lastPage();
+        
 
 
 

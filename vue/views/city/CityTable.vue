@@ -4,6 +4,7 @@ import axios from "axios";
 import Table from "/views/main/components/Table.vue";
 import PageNumber from "/views/main/components/PageNumber.vue";
 export default {
+        props: ['keyword'],
   components: {
     Table,
     PageNumber
@@ -25,15 +26,20 @@ export default {
   },
   methods: {
     fetchData(id) {
-      // 发起GET请求
-      axios
-        .get(
-          process.env.VUE_APP_APIURL +
+  let url = process.env.VUE_APP_APIURL +
             "/v1/post/list?page=" +
             this.page +
             "&number=" +
-            this.number +"&city_id=" +id
-        )
+            this.number +"&city_id=" +id;
+
+  if (this.keyword !== null) {
+    url += '&keyword=' + this.keyword;
+  }
+
+
+      // 发起GET请求
+      axios
+        .get(url)
         .then((response) => {
           // 请求成功，将数据存储在组件的数据中
            this.pageData = response.data;
@@ -54,7 +60,11 @@ export default {
 
 
   },
-
+  watch: {
+    keyword() {
+      this.fetchData(this.$route.params.id);
+    },
+  },
   // 计算属性，用于根据搜索条件过滤数据
   computed: {
 

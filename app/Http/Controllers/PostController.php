@@ -29,7 +29,8 @@ class PostController extends Controller
         $this->validate($request, [
             'page' => 'required',
             'number' => 'required',
-            'city_id' =>'sometimes'
+            'city_id' =>'sometimes',
+            'keyword' =>'sometimes',
         ]);
         $service = new PostService();
         $response = $service->GetData($request);
