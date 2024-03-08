@@ -71,6 +71,7 @@ class PostService
 
                 if ($htmlPython->enble) {
                     $this->api->log_request([$htmlPython->url],'PostData',$htmlPython->url,[],'網站爬蟲列表');
+                    usleep(100000);
                     $html = $this->api->getWebpage($htmlPython->url);
                     $texts =  $this->api->html_url($html, $htmlPython->body_filter, $htmlPython->title_filter);
                     $this->api->post_text($texts, $htmlPython);
@@ -183,6 +184,7 @@ class PostService
         $text = [];
 
         foreach ($tables as $table) {
+            usleep(100000);
             if ($request->input('connect_url') != null) {
                 $html_post = $this->api->getWebpage($request->input('connect_url') . $table['url']);
 

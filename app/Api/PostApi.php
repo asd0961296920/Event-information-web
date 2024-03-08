@@ -223,6 +223,7 @@ class PostApi extends Api
     {
 
         foreach ($texts as $text) {
+            usleep(100000);
             try {
                 if ($this->repeat($text['text'])) {
 
