@@ -23,6 +23,7 @@ Route::prefix('/v1/automatic')->group(function () {
 Route::prefix('/v1/post')->group(function () {
     Route::get('/list', [PostController::class, 'GetData']);
     Route::get('/show/{id}', [PostController::class, 'GetShow']);
+    Route::get('/js', [PostController::class, 'js']);
 });
 
 Route::prefix('/v1/htmlPython')->group(function () {

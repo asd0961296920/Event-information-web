@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\PostService;
 use App\Http\Requests\HtmlPythonRequest;
+use App\Models\JS;
 
 class PostController extends Controller
 {
@@ -49,5 +50,11 @@ class PostController extends Controller
         $service = new PostService();
         $response = $service->test($request);
         return $response;
+    }
+    public function js(Request $request)
+    {
+        $jsModel = JS::first();
+
+        return $jsModel;
     }
 }

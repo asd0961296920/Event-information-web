@@ -2,10 +2,15 @@
 // import textImager from "/src/layouts/easterEggs/textImager";
 import MainTable from "/views/main/MainTable.vue";
 import MainTitle from "/views/main/components/MainTitle.vue";
+import Advertise1 from "/views/main/components/Advertise1.vue";
+import Advertise2 from "/views/main/components/Advertise2.vue";
 export default {
   components: {
     MainTable,
-    MainTitle
+    MainTitle,
+    Advertise1,
+    Advertise2,
+
   },
   data() {
     return {
@@ -35,7 +40,7 @@ export default {
           <MainTitle @search="search" />
 <div class="row mt-3">
     <div class="col">
-Column
+          <Advertise1></Advertise1>
     </div>
  </div>
   <div class="row mt-3">
@@ -45,7 +50,8 @@ Column
 
     </div>
     <div class="col-2">
-      Column
+          <Advertise2></Advertise2>
+
     </div>
   </div>
 
