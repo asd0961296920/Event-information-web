@@ -23,7 +23,8 @@ export default {
 <template>
   <div>
     <MainTitle></MainTitle>
-
+    <div class="container mt-2">
     <AdminFormUpdate></AdminFormUpdate>
+      </div>
   </div>
 </template>

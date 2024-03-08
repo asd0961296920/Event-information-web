@@ -10,23 +10,20 @@ export default {
     MainTitle,
     Advertise1,
     Advertise2,
-
   },
   data() {
     return {
       searchQuery: "",
       isChecked: false,
       start: null,
-      keyword:null
+      keyword: null,
     };
   },
-    methods: {
-    search(data){
+  methods: {
+    search(data) {
       this.keyword = data;
-    }
-
-
     },
+  },
 
   // 计算属性，用于根据搜索条件过滤数据
   computed: {},
@@ -34,30 +31,23 @@ export default {
 </script>
 
 <template>
+  <div>
+    <MainTitle @search="search" />
 
-<div>
-
-          <MainTitle @search="search" />
-<div class="row mt-3">
-    <div class="col">
+    <div class="container-fluid">
+      <div class="row mt-3">
+        <div class="col">
           <Advertise1></Advertise1>
-    </div>
- </div>
-  <div class="row mt-3">
-
-    <div class="col">
-    <MainTable :keyword="keyword" />
-
-    </div>
-    <div class="col-2">
+        </div>
+      </div>
+      <div class="row mt-3 mx-4">
+        <div class="col">
+          <MainTable :keyword="keyword" />
+        </div>
+        <div class="col-md-auto">
           <Advertise2></Advertise2>
-
+        </div>
+      </div>
     </div>
   </div>
-
-  
-  
-   </div>
-
-  
 </template>

@@ -286,15 +286,16 @@ window.open(newUrl, '_blank');
 </div>
   </div>
 </div>
-
-      <button type="submit" class="btn btn-outline-secondary m-1">
-        新增爬取網站
-      </button>
+<div class="d-flex justify-content-end mt-4 mb-2">
 
       <button type="button" @click="testClick('/admin/test')" class="btn btn-outline-secondary m-1">
         測試爬取效果
       </button>
-
+      
+      <button type="submit" class="btn btn-outline-secondary m-1">
+        新增爬取網站
+      </button>
+</div>
     </form>
 
 

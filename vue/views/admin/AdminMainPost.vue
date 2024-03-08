@@ -24,11 +24,11 @@ export default {
   <div>
     <MainTitle></MainTitle>
 
-
+    <div class="container mt-2">
 
       <AdminFormPost></AdminFormPost>
 
 
-   
+     </div>
   </div>
 </template>
