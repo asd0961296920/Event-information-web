@@ -9,15 +9,17 @@ export default {
     PageBody,
     MainTitle,
     Advertise3,
-    Advertise2
+    Advertise2,
     
   },
   data() {
     return {
-      searchQuery: "",
-      isChecked: false,
-      start: null,
+
     };
+  },
+
+    methods: {
+
   },
 
   // 计算属性，用于根据搜索条件过滤数据
@@ -40,7 +42,7 @@ export default {
   <div class="row">
 
     <div class="col-10">
-      <PageBody></PageBody>
+            <PageBody></PageBody>
     </div>
         <div class="col">
       <Advertise2></Advertise2>

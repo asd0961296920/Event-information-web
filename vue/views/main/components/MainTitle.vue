@@ -36,6 +36,9 @@ export default {
 
     search() {
 this.keyword = this.Data;
+  if(this.keyword === '後台' || this.keyword === '後臺'){
+window.location.href = "/admin";
+  }
     this.$emit('search', this.keyword);
 
     },
@@ -57,7 +60,7 @@ window.location.href = "/city/"+id;
   <div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">首頁</a>
+    <a class="navbar-brand" href="/">台灣即時活動</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

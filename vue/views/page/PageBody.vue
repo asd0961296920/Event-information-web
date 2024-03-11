@@ -29,6 +29,7 @@ export default {
            this.post = this.apiData.post_text;
 
           this.post = this.post.replace(/\s/g, "<br>");
+          document.title =this.apiData.title;
           console.log(this.apiData.post_text);
         })
         .catch((error) => {
