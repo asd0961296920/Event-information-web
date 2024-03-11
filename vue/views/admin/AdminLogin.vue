@@ -1,10 +1,12 @@
 <script>
 import MainTitle from "/views/main/components/MainTitle.vue";
 import LoginInput from "/views/admin/element/LoginInput.vue";
+import NullCookies from "/views/admin/element/NullCookies.vue";
 export default {
   components: {
     MainTitle,
     LoginInput,
+    NullCookies
   },
   data() {
     return {
@@ -24,6 +26,7 @@ export default {
 
 <template>
   <div>
+        <NullCookies></NullCookies>
     <MainTitle></MainTitle>
     <LoginInput></LoginInput>
   </div>
