@@ -38,7 +38,7 @@ export default {
           // 请求成功，将数据存储在组件的数据中
            this.pageData = response.data;
           this.apiData = response.data.posts.data;
-          
+         document.title ='全台灣最新活動';
           // console.log(response);
         })
         .catch((error) => {

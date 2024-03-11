@@ -44,7 +44,9 @@ export default {
           // 请求成功，将数据存储在组件的数据中
            this.pageData = response.data;
           this.apiData = response.data.posts.data;
-          
+          if (this.apiData && this.apiData.length > 0) {
+           document.title ='全'+ this.apiData[0].area.city + '最新活動總覽';
+          }
           console.log(id);
         })
         .catch((error) => {
