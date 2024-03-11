@@ -40,7 +40,10 @@ Route::prefix('/v1/area')->group(function () {
     Route::get('/list', [AreaController::class, 'list']);
     Route::get('/show/{id}', [AreaController::class, 'show']);
 });
-
+Route::prefix('/v1/user')->group(function () {
+    Route::get('/', [PostController::class, 'user']);
+    Route::get('/token', [PostController::class, 'token']);
+});
 
 
 

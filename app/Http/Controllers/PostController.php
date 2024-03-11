@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use App\Services\PostService;
 use App\Http\Requests\HtmlPythonRequest;
 use App\Models\JS;
-
+use App\Models\User;
 class PostController extends Controller
 {
     public function PostData(Request $request)
@@ -56,5 +56,32 @@ class PostController extends Controller
         $jsModel = JS::first();
 
         return $jsModel;
+    }
+
+    public function user(Request $request)
+    {
+        $this->validate($request, [
+            'password' => 'required',
+        ]);
+        $User = User::first();
+        $password = md5($request->input('password'));
+        if($User->password == $password){
+            return [
+                'login'=>true,
+                'token'=>$password
+            ];
+        }else{
+            return [
+                'login'=>false
+            ];
+        }
+    }
+    public function token(Request $request)
+    {
+
+        $User = User::first();
+        return [
+            'token' =>$User->password ?? ''
+        ];
     }
 }

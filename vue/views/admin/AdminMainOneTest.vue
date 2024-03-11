@@ -1,9 +1,11 @@
 <script>
 import MainTitle from "/views/main/components/MainTitle.vue";
+import Cookies from "/views/admin/element/Cookies.vue";
 import axios from "axios";
 export default {
   components: {
     MainTitle,
+    Cookies
   },
   data() {
     return {
@@ -50,6 +52,7 @@ url:""
 
 <template>
   <div>
+    <Cookies></Cookies>
     <MainTitle></MainTitle>
 
     <div class="container">

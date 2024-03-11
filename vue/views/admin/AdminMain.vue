@@ -2,11 +2,13 @@
 import MainTitle from "/views/main/components/MainTitle.vue";
 // import AdminFormPost from "/views/admin/element/AdminFormPost.vue";
 import AdminTable from "/views/admin/element/AdminTable.vue";
+import Cookies from "/views/admin/element/Cookies.vue";
 import axios from "axios";
 export default {
   components: {
     MainTitle,
     AdminTable,
+    Cookies
   },
   data() {
     return {
@@ -39,6 +41,11 @@ export default {
     newClick() {
       window.location.href = "/admin/post";
     },
+
+    logout(){
+  localStorage.removeItem('token');
+      window.location.href = "/admin/login";
+    }
   },
   // 计算属性，用于根据搜索条件过滤数据
   computed: {},
@@ -47,6 +54,7 @@ export default {
 
 <template>
   <div>
+    <Cookies></Cookies>
     <MainTitle></MainTitle>
     <div class="container mt-2">
       <button
@@ -69,6 +77,14 @@ export default {
         class="btn btn-outline-secondary m-1"
       >
         執行爬蟲
+      </button>
+
+        <button
+        type="button"
+        @click="logout()"
+        class="btn btn-outline-secondary m-1"
+      >
+        登出
       </button>
 
       <AdminTable></AdminTable>

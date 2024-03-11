@@ -2,10 +2,12 @@
 import MainTitle from "/views/main/components/MainTitle.vue";
 // import AdminFormPost from "/views/admin/element/AdminFormPost.vue";
 import AdminFormPost from "/views/admin/element/AdminFormPost.vue";
+import Cookies from "/views/admin/element/Cookies.vue";
 export default {
   components: {
     MainTitle,
     AdminFormPost,
+    Cookies
   },
   data() {
     return {
@@ -22,6 +24,7 @@ export default {
 
 <template>
   <div>
+    <Cookies></Cookies>
     <MainTitle></MainTitle>
 
     <div class="container mt-2">

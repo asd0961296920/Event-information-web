@@ -80,7 +80,7 @@ export default {
           // 处理成功的情况
           this.showSuccessModal();
           console.log("Item status updated successfully:", response.data);
-          window.location.reload();
+          window.location.href = "/admin";
         })
         .catch((error) => {
           // 处理错误
