@@ -229,7 +229,7 @@ class PostApi extends Api
 
 
                     if ($htmlPython->connect_url != null) {
-                        $this->log_request([], 'post_text', $htmlPython->connect_url . $text['url'], [], '網站爬蟲api文章');
+                        $this->log_request([], 'post_text', $htmlPython->connect_url . $text['url'], [], '網站爬蟲api文章(城市代碼：' . $htmlPython->area_id.')');
                         $html_post = $this->getWebpage($htmlPython->connect_url . $text['url']);
 
                         $post_text =  $this->html_text($html_post, $htmlPython->post_filter);

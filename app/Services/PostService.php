@@ -70,7 +70,7 @@ class PostService
 
 
                 if ($htmlPython->enble) {
-                    $this->api->log_request([$htmlPython->url],'PostData',$htmlPython->url,[],'網站爬蟲列表');
+                    $this->api->log_request([$htmlPython->url],'PostData',$htmlPython->url,[],'網站爬蟲列表(城市代碼：' .$htmlPython->area_id .')');
                     usleep(100000);
                     $html = $this->api->getWebpage($htmlPython->url);
                     $texts =  $this->api->html_url($html, $htmlPython->body_filter, $htmlPython->title_filter);

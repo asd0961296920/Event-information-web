@@ -16,13 +16,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('log:clear')
-        //     ->timezone('Asia/Taipei')
-        //     ->dailyAt('01:00');
+        $schedule->command('log:clear')
+            ->timezone('Asia/Taipei')
+            ->weekly()->sundays()->at('01:00');
 
         $schedule->command('web_python')
             ->timezone('Asia/Taipei')
-            ->dailyAt('09:59');
+            ->dailyAt('03:30');
     }
 
     /**
