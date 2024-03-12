@@ -16,9 +16,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('log:clear')
+        // $schedule->command('log:clear')
+        //     ->timezone('Asia/Taipei')
+        //     ->dailyAt('01:00');
+
+        $schedule->command('web_python')
             ->timezone('Asia/Taipei')
-            ->dailyAt('01:00');
+            ->dailyAt('09:59');
     }
 
     /**
@@ -28,8 +32,9 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
+        // require base_path('app/Console/Commands/WebPython.php');
     }
 }
