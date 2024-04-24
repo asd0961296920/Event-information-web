@@ -17,6 +17,15 @@ class PostController extends Controller
         return $response;
     }
 
+    public function PostDataOne(Request $request)
+    {
+        $action = "取得單筆資料";
+        $apiType = "example-get_data";
+        $service = new PostService();
+        $response = $service->PostDataMain($request);
+        return $response;
+    }
+
     public function PostText(Request $request)
     {
         $service = new PostService();

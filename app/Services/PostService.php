@@ -60,6 +60,48 @@ class PostService
 
     }
 
+    public function PostDataMainOne(Request $request,$id)
+    {
+        $processes = [];
+        $pid1 = pcntl_fork();
+        
+        if ($pid1 == -1) {
+            die('Could not fork.');
+        } elseif ($pid1) {
+            // 父進程
+            $processes[] = $pid1;
+        } else {
+        
+            //以下是該子進程主要邏輯
+            // $response = response()->json(['狀態'=>'成功'])->setStatusCode(200);
+            // $response->send();
+            // exit();
+            return '成功';
+        }
+        
+        
+        $pid2 = pcntl_fork();
+        
+        if ($pid2 == -1) {
+            die('Could not fork.');
+        } elseif ($pid2) {
+            // 父進程
+            $processes[] = $pid2;
+        } else {
+        
+            $this->PostDataOne($request,$id);
+        
+            exit();
+        }
+        
+        // 父進程等待子進程完成
+        foreach ($processes as $pid) {
+            pcntl_waitpid($pid, $status);
+        }
+
+    }
+
+
     public function PostData(Request $request)
     {
         $htmlPythons = HtmlPython::get();
@@ -96,6 +138,47 @@ class PostService
             } catch (\Exception $e) {
             }
         }
+
+
+
+        return $texts ?? 'ok';
+    }
+
+
+    public function PostDataOne(Request $request,$id)
+    {
+        $htmlPython = HtmlPython::where('id' == $id)->first();
+
+            try {
+
+
+                if ($htmlPython->enble) {
+                    $this->api->log_request([$htmlPython->url],'PostData',$htmlPython->url,[],'網站爬蟲列表(城市代碼：' .$htmlPython->area_id .')');
+                    usleep(100000);
+                    $html = $this->api->getWebpage($htmlPython->url);
+                    $texts =  $this->api->html_url($html, $htmlPython->body_filter, $htmlPython->title_filter);
+                    $this->api->post_text($texts, $htmlPython);
+                    if ($htmlPython->page_bool) {
+                        if ($htmlPython->table_page != null) {
+
+                            for ($i = 2; $i < $htmlPython->page + 2; $i++) {
+                                $html = $this->api->getWebpage($htmlPython->url . $htmlPython->table_page . $i);
+                                $texts =  $this->api->html_url($html, $htmlPython->body_filter, $htmlPython->title_filter);
+                                $this->api->post_text($texts, $htmlPython);
+                            }
+                        } else {
+                            for ($i = 2; $i < $htmlPython->page + 2; $i++) {
+                                $html = $this->api->getWebpage($htmlPython->url . '/' . $i);
+                                $texts =  $this->api->html_url($html, $htmlPython->body_filter, $htmlPython->title_filter);
+                                $this->api->post_text($texts, $htmlPython);
+                            }
+                        }
+                    }
+                    $this->api->log_response($texts,'PostData',200,'網站爬蟲列表',[]);
+                }
+            } catch (\Exception $e) {
+            }
+
 
 
 

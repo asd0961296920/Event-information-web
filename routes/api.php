@@ -16,6 +16,7 @@ Route::controller(ExampleController::class)->prefix('v1/example/')->group(functi
 
 Route::prefix('/v1/automatic')->group(function () {
     Route::get('/post', [PostController::class, 'PostData']);
+    Route::get('/post_one/{id}', [PostController::class, 'PostDataOne']);
     Route::get('/post_text', [PostController::class, 'PostText']);
     Route::post('/test', [PostController::class, 'test']);
 });
