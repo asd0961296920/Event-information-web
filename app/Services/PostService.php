@@ -225,7 +225,14 @@ class PostService
             $keyword = '%' . $request->input('keyword') . '%';
             $posts->where('title', 'like', $keyword);
         }
-        
+
+        if($request->input('year')){
+          $posts->whereYear('event_date', $request->input('year'));
+        }
+        if($request->input('moth')){
+            $posts->whereMonth('event_date', $request->input('moth'));
+        }
+
         $perPage = $request->input('number');
         $page = $request->input('page');
         

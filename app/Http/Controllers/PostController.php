@@ -41,6 +41,8 @@ class PostController extends Controller
             'number' => 'required',
             'city_id' =>'sometimes',
             'keyword' =>'sometimes',
+            'year' =>'sometimes|integer|nullable',
+            'moth' =>'sometimes|integer|nullable',
         ]);
         $service = new PostService();
         $response = $service->GetData($request);
