@@ -99,7 +99,7 @@ class PostApi extends Api
         foreach ($filteredContent as $contentNode) {
             $date = $contentNode->nodeValue;
             // 假設日期格式為YYYY-MM-DD
-            if (preg_match('/\d{4}-\d{2}-\d{2}/', $date) || preg_match('/\d{4}\/\d{2}\/\d{2}/', $date)) {
+            if (preg_match('/\d{4}-\d{2}-\d{2}/', $date) || preg_match('/\d{4}\/\d{2}\/\d{2}/', $date)|| preg_match('/\d{4}\.\d{2}\.\d{2}/', $date)) {
                 if ($minDate === null || $date > $minDate) {
                     $minDate = $date;
                 }
@@ -118,13 +118,19 @@ class PostApi extends Api
     public function tidyDate($text)
     {
         $pattern = '/\d{4}-\d{2}-\d{2}/'; // 匹配日期的正則表達式
-        $pattern2 = '/\d{4}\/\d{2}\/\d{2}/'; 
+        $pattern2 = '/\d{4}\/\d{2}\/\d{2}/'; // 匹配日期的正則表達式
+        $pattern3 = '/\d{4}\.\d{2}\.\d{2}/'; // 匹配日期的正則表達式
+    
         if (preg_match($pattern, $text, $matches)) {
             $date = $matches[0]; // 提取匹配的日期
             return $date; // 輸出：2024-03-20
-        }else if(preg_match($pattern2, $text, $matches)){
+        } else if (preg_match($pattern2, $text, $matches)) {
             $date = $matches[0]; // 提取匹配的日期
             $formattedDate = str_replace('/', '-', $date);
+            return $formattedDate; // 輸出：2024-03-20
+        } else if (preg_match($pattern3, $text, $matches)) {
+            $date = $matches[0]; // 提取匹配的日期
+            $formattedDate = str_replace('.', '-', $date);
             return $formattedDate; // 輸出：2024-03-20
         } else {
             return null;
