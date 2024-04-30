@@ -21,6 +21,7 @@
     "@popperjs/core": "^2.11.2",
     "@simonwep/pickr": "^1.8.2",
     "@vue-leaflet/vue-leaflet": "^0.6.1",
+    "@vue/server-renderer": "^3.4.26",
     "@vueform/multiselect": "^2.3.1",
     "@vueform/slider": "^2.0.8",
     "@vueform/toggle": "^2.0.1",
@@ -59,6 +60,7 @@
     "vue-i18n": "^9.2.0-beta.15",
     "vue-prismjs": "^1.2.0",
     "vue-router": "4",
+    "vue-server-renderer": "^2.7.16",
     "vue3-apexcharts": "^1.4.1",
     "vue3-count-to": "^1.1.2",
     "vue3-echarts": "^1.0.4",
@@ -75,7 +77,8 @@
     "@vue/compiler-sfc": "^3.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0"
+    "eslint-plugin-vue": "^7.0.0",
+    "sitemap-webpack-plugin": "^1.1.1"
   },
   "eslintConfig": {
     "root": true,
