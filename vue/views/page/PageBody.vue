@@ -31,11 +31,30 @@ export default {
           this.post = this.post.replace(/\s/g, "<br>");
           document.title =this.apiData.title;
           console.log(this.apiData.post_text);
+          this. insertMetaTags();
         })
         .catch((error) => {
           // 处理错误
           console.error("Error fetching data:", error);
         });
+    },
+          insertMetaTags() {
+      // 创建 meta 标签
+      const metaTags = [
+        { property: 'og:title', content: this.apiData.title },
+        { property: 'og:description', content: this.apiData.post_text.substring(0, 100) },
+        { property: 'og:image', content: this.apiData.imager1 },
+        { property: 'og:url', content: process.env.VUE_APP_URL + "/page/"+this.apiData.id},
+        { property: 'og:type', content: this.apiData.title }
+      ];
+
+      // 插入 meta 标签到头部
+      metaTags.forEach(tag => {
+        const metaTag = document.createElement('meta');
+        metaTag.setAttribute('property', tag.property);
+        metaTag.setAttribute('content', tag.content);
+        document.head.appendChild(metaTag);
+      });
     }
 
 

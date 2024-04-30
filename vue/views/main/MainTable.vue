@@ -63,6 +63,7 @@ if(this.moth == "null"){
            this.pageData = response.data;
           this.apiData = response.data.posts.data;
          document.title ='全台灣最新活動';
+         this.insertMetaTags();
           // console.log(response);
         })
         .catch((error) => {
@@ -83,7 +84,25 @@ let year = now.getFullYear();
 
 this.yearsArray = [year+1, year, year-1,year-2,year-3];
 
-     }
+     },
+      insertMetaTags() {
+      // 创建 meta 标签
+      const metaTags = [
+        { property: 'og:title', content: '台灣即時活動' },
+        { property: 'og:description', content: '探索全台灣盡在指尖盡興！ 歡迎來到我們的網站，這裡是您探索全台灣旅遊活動的終極目的地。 無論您是喜歡健行山林、探索古鎮、品嚐美食，還是享受海灘風光，我們都有您心儀的活動。 即時更新的活動訊息，讓您隨時掌握最新動態，輕鬆規劃行程。' },
+        { property: 'og:image', content: 'https://twgather.techscomet.com/cc.jpg' },
+        { property: 'og:url', content: process.env.VUE_APP_URL },
+        { property: 'og:type', content: '台灣即時活動' }
+      ];
+
+      // 插入 meta 标签到头部
+      metaTags.forEach(tag => {
+        const metaTag = document.createElement('meta');
+        metaTag.setAttribute('property', tag.property);
+        metaTag.setAttribute('content', tag.content);
+        document.head.appendChild(metaTag);
+      });
+    }
 
 
   },

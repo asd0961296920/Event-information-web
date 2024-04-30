@@ -33,6 +33,13 @@ class PostController extends Controller
         return $response;
 
     }
+    public function PostText123(Request $request)
+    {
+        $service = new PostService();
+        $response = $service->PostText123($request);
+        return $response;
+
+    }
 
     public function GetData(Request $request)
     {

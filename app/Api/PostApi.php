@@ -242,9 +242,9 @@ class PostApi extends Api
                         $imager_url = null;
                         if ($htmlPython->imager_bool && $htmlPython->imager1_filter != null) {
                             $imager_html =  $this->html_second_floor($html_post, $htmlPython->post_filter);
-                            $imager_url =  $this->html_imager_url_one($imager_html, $htmlPython->imager1_filter, 'jpg');
+                            $imager_url =  $this->html_imager_url_one($html_post, $htmlPython->imager1_filter, 'jpg');
                             if ($imager_url == null) {
-                                $imager_url =  $this->html_imager_url_one($imager_html, $htmlPython->imager1_filter, 'png');
+                                $imager_url =  $this->html_imager_url_one($html_post, $htmlPython->imager1_filter, 'png');
                             }
                             if ($htmlPython->imager_url != null && $imager_url != null) {
                                 $imager_url = $htmlPython->imager_url . $imager_url;
@@ -268,9 +268,9 @@ class PostApi extends Api
                         $imager_url = null;
                         if ($htmlPython->imager_bool && $htmlPython->imager1_filter != null) {
                             $imager_html =  $this->html_second_floor($html_post, $htmlPython->post_filter);
-                            $imager_url =  $this->html_imager_url_one($imager_html, $htmlPython->imager1_filter, 'jpg');
+                            $imager_url =  $this->html_imager_url_one($html_post, $htmlPython->imager1_filter, 'jpg');
                             if ($imager_url == null) {
-                                $imager_url =  $this->html_imager_url_one($imager_html, $htmlPython->imager1_filter, 'png');
+                                $imager_url =  $this->html_imager_url_one($html_post, $htmlPython->imager1_filter, 'png');
                             }
                             if ($htmlPython->imager_url != null && $imager_url != null) {
                                 $imager_url = $htmlPython->imager_url . $imager_url;

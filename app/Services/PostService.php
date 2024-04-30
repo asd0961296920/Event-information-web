@@ -282,9 +282,9 @@ class PostService
                 $imager_url = null;
                 if ($request->input('imager_bool') && $request->input('imager1_filter') != null) {
                     $imager_html =  $this->api->html_second_floor($html_post, $request->input('post_filter'));
-                    $imager_url =  $this->api->html_imager_url_one($imager_html, $request->input('imager1_filter'), 'jpg');
+                    $imager_url =  $this->api->html_imager_url_one($html_post, $request->input('imager1_filter'), 'jpg');
                     if ($imager_url == null) {
-                        $imager_url =  $this->api->html_imager_url_one($imager_html, $request->input('imager1_filter'), 'png');
+                        $imager_url =  $this->api->html_imager_url_one($html_post, $request->input('imager1_filter'), 'png');
                     }
                     if ($request->input('imager_url') != null && $imager_url != null) {
                         $imager_url = $request->input('imager_url') . $imager_url;
@@ -312,9 +312,9 @@ class PostService
                 $imager_url = null;
                 if ($request->input('imager_bool') && $request->input('imager1_filter') != null) {
                     $imager_html =  $this->api->html_second_floor($html_post, $request->input('post_filter'));
-                    $imager_url =  $this->api->html_imager_url_one($imager_html, $request->input('imager1_filter'), 'jpg');
+                    $imager_url =  $this->api->html_imager_url_one($html_post, $request->input('imager1_filter'), 'jpg');
                     if ($imager_url == null) {
-                        $imager_url =  $this->api->html_imager_url_one($imager_html, $request->input('imager1_filter'), 'png');
+                        $imager_url =  $this->api->html_imager_url_one($html_post, $request->input('imager1_filter'), 'png');
                     }
                     if ($request->input('imager_url') != null && $imager_url != null) {
                         $imager_url = $request->input('imager_url') . $imager_url;
@@ -339,5 +339,25 @@ class PostService
             'list_data' => $tables,
             'text_data' => $text,
         ];
+    }
+    //測試用
+    public function PostText123(Request $request)
+    {
+        $html_post = $this->api->getWebpage("https://www.twmarket.tw/?p=48907");
+        $imager_url = null;
+
+        if ($request->input('imager_bool') && $request->input('imager1_filter') != null) {
+            $imager_html =  $this->api->html_second_floor($html_post, $request->input('post_filter'));
+            // return $imager_html ;
+            $imager_url =  $this->api->html_imager_url_one($html_post, $request->input('imager1_filter'), 'jpg');
+            // return $imager_url ;
+            if ($imager_url == null) {
+                $imager_url =  $this->api->html_imager_url_one($imager_html, $request->input('imager1_filter'), 'png');
+            }
+            if ($request->input('imager_url') != null && $imager_url != null) {
+                $imager_url = $request->input('imager_url') . $imager_url;
+            }
+        }
+        return $imager_url ;
     }
 }

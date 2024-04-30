@@ -89,6 +89,7 @@ url = process.env.VUE_APP_APIURL +
           if (this.apiData && this.apiData.length > 0) {
            document.title ='全'+ this.apiData[0].area.city + '最新活動總覽';
           }
+          this.insertMetaTags();
           console.log(id);
         })
         .catch((error) => {
@@ -106,7 +107,23 @@ let year = now.getFullYear();
 
 this.yearsArray = [year+1, year, year-1,year-2,year-3];
 
-     }
+     },
+    insertMetaTags() {
+      // 创建 meta 标签
+      const metaTags = [
+        { property: 'og:title', content: '全'+ this.apiData[0].area.city + '最新活動總覽' },
+        { property: 'og:url', content: process.env.VUE_APP_APIURL + "/city/"+this.$route.params.id},
+        { property: 'og:type', content: '全'+ this.apiData[0].area.city + '最新活動總覽' }
+      ];
+
+      // 插入 meta 标签到头部
+      metaTags.forEach(tag => {
+        const metaTag = document.createElement('meta');
+        metaTag.setAttribute('property', tag.property);
+        metaTag.setAttribute('content', tag.content);
+        document.head.appendChild(metaTag);
+      });
+    }
 
 
 

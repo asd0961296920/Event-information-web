@@ -1,8 +1,12 @@
 <ifModule mod_rewrite.c>
-RewriteEngine On
-RewriteBase /
-RewriteRule ^index\.html$ - [L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.html [L]
-</ifModule>
+    RewriteEngine On
+    RewriteBase /
+    
+    # 排除 sitemap.xml 文件
+    RewriteCond %{REQUEST_URI} !^/sitemap\.xml$ [NC]
+    
+    # 如果文件或目錄不存在，則重寫到 index.html
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.html [L]
+    </ifModule>
