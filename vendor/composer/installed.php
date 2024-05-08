@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '9104c34abe724c48bdc2a0c8adefabff7ba783d1',
+        'reference' => '2c2e57944b4cfafa8b91b6bc434dcf2211b99e09',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -111,6 +111,15 @@
             'install_path' => __DIR__ . '/../facade/ignition-contracts',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'facebook/webdriver' => array(
+            'pretty_version' => '1.1.3',
+            'version' => '1.1.3.0',
+            'reference' => 'b7186fb1bcfda956d237f59face250d06ef47253',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../facebook/webdriver',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'fakerphp/faker' => array(
             'pretty_version' => 'v1.19.0',
@@ -376,6 +385,15 @@
                 0 => 'v9.19.0',
             ),
         ),
+        'jonnyw/php-phantomjs' => array(
+            'pretty_version' => 'v2.0.1',
+            'version' => '2.0.1.0',
+            'reference' => 'a88fe560cf79481ff3c997deb223c05f4f37a9b5',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../jonnyw/php-phantomjs',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'kodova/hamcrest-php' => array(
             'dev_requirement' => true,
             'replaced' => array(
@@ -394,7 +412,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '9104c34abe724c48bdc2a0c8adefabff7ba783d1',
+            'reference' => '2c2e57944b4cfafa8b91b6bc434dcf2211b99e09',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

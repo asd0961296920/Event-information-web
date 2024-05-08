@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Mockery' => array($vendorDir . '/mockery/mockery/library'),
+    'JonnyW\\PhantomJs\\' => array($vendorDir . '/jonnyw/php-phantomjs/src'),
 );

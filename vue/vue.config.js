@@ -1,6 +1,10 @@
 let routes = [
-    '/', '/city', '/page','/city/:id', '/page/:id'
+    '/', '/city', '/page','/city', '/page'
   ]
+  for (let i = 1; i <= 22; i++) {
+    routes.push(`/city/${i}`);
+}
+
 
   const SitemapWebpackPlugin = require('sitemap-webpack-plugin').default;
 

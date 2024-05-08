@@ -10,7 +10,7 @@ use App\Api\PostApi;
 use Symfony\Component\DomCrawler\Crawler;
 use App\Models\Post;
 use App\Models\HtmlPython;
-
+use GuzzleHttp\Client;
 class PostService
 {
     protected $api;
@@ -343,21 +343,31 @@ class PostService
     //測試用
     public function PostText123(Request $request)
     {
-        $html_post = $this->api->getWebpage("https://www.twmarket.tw/?p=48907");
-        $imager_url = null;
+       // 要请求的 Node.js 服务器的地址
+       $nodeJSUrl = 'http://localhost:3000/get-web-page-content';
 
-        if ($request->input('imager_bool') && $request->input('imager1_filter') != null) {
-            $imager_html =  $this->api->html_second_floor($html_post, $request->input('post_filter'));
-            // return $imager_html ;
-            $imager_url =  $this->api->html_imager_url_one($html_post, $request->input('imager1_filter'), 'jpg');
-            // return $imager_url ;
-            if ($imager_url == null) {
-                $imager_url =  $this->api->html_imager_url_one($imager_html, $request->input('imager1_filter'), 'png');
-            }
-            if ($request->input('imager_url') != null && $imager_url != null) {
-                $imager_url = $request->input('imager_url') . $imager_url;
-            }
-        }
-        return $imager_url ;
+       // 要获取的网页的 URL
+       $urlToFetch = 'https://www.travel.taipei/zh-tw/must-visit/major-event';
+
+       // 创建 Guzzle 客户端
+       $client = new Client();
+
+       try {
+           // 发送 GET 请求到 Node.js 服务器，并传递网页的 URL 作为参数
+           $response = $client->request('GET', $nodeJSUrl, [
+               'query' => ['url' => $urlToFetch]
+           ]);
+
+           // 检查响应状态码
+           if ($response->getStatusCode() === 200) {
+               // 返回页面内容
+               return strval($response->getBody()->getContents());
+           } else {
+               return "Failed to load page. Status code: " . $response->getStatusCode();
+           }
+       } catch (\Exception $e) {
+           // 捕获异常并返回错误消息
+           return "Failed to load page. Exception: " . $e->getMessage();
+       }
     }
 }

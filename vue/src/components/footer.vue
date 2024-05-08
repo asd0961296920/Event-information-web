@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6">
-                {{new Date().getFullYear()}} © Velzon.
+                {{new Date().getFullYear()}} © 台灣即時活動
             </div>
             <div class="col-sm-6">
                 <div class="text-sm-end d-none d-sm-block">

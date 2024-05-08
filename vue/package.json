@@ -47,6 +47,7 @@
     "node-sass": "6.0.1",
     "particles.vue3": "^1.40.2",
     "prismjs": "^1.26.0",
+    "puppeteer": "^22.8.0",
     "sass-loader": "^10.2.1",
     "simplebar": "^5.3.6",
     "simplebar-vue3": "^0.1.5",
