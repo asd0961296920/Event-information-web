@@ -234,63 +234,63 @@ class Api
      * 獲取網頁原始碼
      *
      */
-    // public function getWebpage(string $url)
-    // {
-    //     // 使用 cURL 初始化一个新的会话
-    //     $curl = curl_init();
+    public function getWebpage(string $url)
+    {
+        // 使用 cURL 初始化一个新的会话
+        $curl = curl_init();
 
-    //     // 设置 cURL 选项
-    //     curl_setopt($curl, CURLOPT_URL, $url); // 设置 URL
-    //     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); // 将返回的内容作为字符串返回而不是直接输出
-    //     curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true); // 允许 cURL 自动跟踪重定向
-    //     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); // 忽略 SSL 证书验证
+        // 设置 cURL 选项
+        curl_setopt($curl, CURLOPT_URL, $url); // 设置 URL
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); // 将返回的内容作为字符串返回而不是直接输出
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true); // 允许 cURL 自动跟踪重定向
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); // 忽略 SSL 证书验证
 
-    //     // 执行 cURL 请求并获取返回的页面内容
-    //     $html = curl_exec($curl);
+        // 执行 cURL 请求并获取返回的页面内容
+        $html = curl_exec($curl);
 
-    //     // 检查是否发生错误
-    //     if ($html === false) {
-    //         return "Error fetching webpage: " . curl_error($curl);
-    //         return false;
-    //     }
+        // 检查是否发生错误
+        if ($html === false) {
+            return "Error fetching webpage: " . curl_error($curl);
+            return false;
+        }
 
-    //     // 关闭 cURL 会话
-    //     curl_close($curl);
+        // 关闭 cURL 会话
+        curl_close($curl);
 
-    //     return $html;
-    // }
+        return $html;
+    }
 
      /**
      * 獲取網頁原始碼
      *
      */
-    public function getWebpage(string $url)
-    {
-       // 要请求的 Node.js 服务器的地址
-       $nodeJSUrl = 'http://localhost:3000/get-web-page-content';
+    // public function getWebpage(string $url)
+    // {
+    //    // 要请求的 Node.js 服务器的地址
+    //    $nodeJSUrl = 'http://localhost:3000/get-web-page-content';
 
-       // 要获取的网页的 URL
-       $urlToFetch = 'https://www.travel.taipei/zh-tw/must-visit/major-event';
+    //    // 要获取的网页的 URL
+    //    $urlToFetch = 'https://www.travel.taipei/zh-tw/must-visit/major-event';
 
-       // 创建 Guzzle 客户端
-       $client = new Client();
+    //    // 创建 Guzzle 客户端
+    //    $client = new Client();
 
-       try {
-           // 发送 GET 请求到 Node.js 服务器，并传递网页的 URL 作为参数
-           $response = $client->request('GET', $nodeJSUrl, [
-               'query' => ['url' => $urlToFetch]
-           ]);
+    //    try {
+    //        // 发送 GET 请求到 Node.js 服务器，并传递网页的 URL 作为参数
+    //        $response = $client->request('GET', $nodeJSUrl, [
+    //            'query' => ['url' => $urlToFetch]
+    //        ]);
 
-           // 检查响应状态码
-           if ($response->getStatusCode() === 200) {
-               // 返回页面内容
-               return strval($response->getBody()->getContents());
-           } else {
-               return "Failed to load page. Status code: " . $response->getStatusCode();
-           }
-       } catch (\Exception $e) {
-           // 捕获异常并返回错误消息
-           return "Failed to load page. Exception: " . $e->getMessage();
-       }
-    }
+    //        // 检查响应状态码
+    //        if ($response->getStatusCode() === 200) {
+    //            // 返回页面内容
+    //            return strval($response->getBody()->getContents());
+    //        } else {
+    //            return "Failed to load page. Status code: " . $response->getStatusCode();
+    //        }
+    //    } catch (\Exception $e) {
+    //        // 捕获异常并返回错误消息
+    //        return "Failed to load page. Exception: " . $e->getMessage();
+    //    }
+    // }
 }
