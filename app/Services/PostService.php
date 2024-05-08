@@ -344,7 +344,8 @@ class PostService
     public function PostText123(Request $request)
     {
        // 要请求的 Node.js 服务器的地址
-       $nodeJSUrl = 'http://localhost:3000/get-web-page-content';
+    //    $nodeJSUrl = 'http://localhost:3000/get-web-page-content';
+           $nodeJSUrl = 'https://node.twgather.techscomet.com/get-web-page-content';
 
        // 要获取的网页的 URL
        $urlToFetch = 'https://www.travel.taipei/zh-tw/must-visit/major-event';

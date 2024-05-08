@@ -23,6 +23,10 @@ class Kernel extends ConsoleKernel
         $schedule->command('web_python')
             ->timezone('Asia/Taipei')
             ->dailyAt('03:30');
+            $schedule->command('Clearpost')
+            ->timezone('Asia/Taipei')
+            ->dailyAt('03:40');
+
     }
 
     /**

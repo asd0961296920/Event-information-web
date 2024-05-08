@@ -136,9 +136,29 @@ class PostApi extends Api
             return null;
         }
     }
+    
+    /**
+     * 清除多餘文章
+     *
+     */
+    public function Clearpost()
+    {
+
+        $posts = Post::all();
+
+        foreach ($posts as $post) {
+            if($post->post_text == "" || $post->post_text == null){
+                Post::where("id" , $post->id)->delete();
+            }
+            if(strlen($post->title)<=5){
+                Post::where("id" , $post->id)->delete();
+            }
+
+        }
 
 
 
+    }
     /**
      * 解析html原始碼輸出第一個圖片網址
      *
