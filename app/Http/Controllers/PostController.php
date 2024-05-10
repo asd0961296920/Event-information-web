@@ -86,13 +86,21 @@ class PostController extends Controller
         if($User->password == $password){
             return [
                 'login'=>true,
-                'token'=>$password
+                'token'=>$password,
             ];
         }else{
             return [
-                'login'=>false
+                'login'=>false,
             ];
         }
+    }
+
+    public function get_user(Request $request)
+    {
+
+        $User = User::first();
+        return $User;
+
     }
 
     public function user_chrome(Request $request)
@@ -105,6 +113,7 @@ class PostController extends Controller
         $user->chrome = $request->input("chrome");
 
         $user->save();
+        return 200;
 
     }
     public function token(Request $request)

@@ -44,6 +44,7 @@ Route::prefix('/v1/area')->group(function () {
 });
 Route::prefix('/v1/user')->group(function () {
     Route::get('/', [PostController::class, 'user']);
+    Route::get('/get_user', [PostController::class, 'get_user']);
     Route::post('/chrome', [PostController::class, 'user_chrome']);
     Route::get('/token', [PostController::class, 'token']);
 });
