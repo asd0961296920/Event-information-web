@@ -62,6 +62,8 @@ class PostService
 
     public function PostDataMainOne(Request $request,$id)
     {
+
+
         $processes = [];
         $pid1 = pcntl_fork();
         
@@ -76,7 +78,7 @@ class PostService
             // $response = response()->json(['狀態'=>'成功'])->setStatusCode(200);
             // $response->send();
             // exit();
-            return '成功';
+            return '成功' . $id;
         }
         
         
@@ -147,14 +149,13 @@ class PostService
 
     public function PostDataOne(Request $request,$id)
     {
-        $htmlPython = HtmlPython::where('id' == $id)->first();
+        $htmlPython = HtmlPython::where('id' , $id)->first();
 
             try {
 
 
-                if ($htmlPython->enble) {
+
                     $this->api->log_request([$htmlPython->url],'PostData',$htmlPython->url,[],'網站爬蟲列表(城市代碼：' .$htmlPython->area_id .')');
-                    usleep(100000);
                     $html = $this->api->getWebpage($htmlPython->url);
                     $texts =  $this->api->html_url($html, $htmlPython->body_filter, $htmlPython->title_filter);
                     $this->api->post_text($texts, $htmlPython);
@@ -175,7 +176,7 @@ class PostService
                         }
                     }
                     $this->api->log_response($texts,'PostData',200,'網站爬蟲列表',[]);
-                }
+                
             } catch (\Exception $e) {
             }
 
