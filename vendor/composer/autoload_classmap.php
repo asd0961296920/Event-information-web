@@ -12,6 +12,7 @@ return array(
     'App\\Common\\CommonApiUtils' => $baseDir . '/app/Common/CommonApiUtils.php',
     'App\\Common\\Config' => $baseDir . '/app/Common/Config.php',
     'App\\Console\\Commands\\AreaCommand' => $baseDir . '/app/Console/Commands/AreaCommand.php',
+    'App\\Console\\Commands\\Clearpost' => $baseDir . '/app/Console/Commands/Clearpost.php',
     'App\\Console\\Commands\\LogClear' => $baseDir . '/app/Console/Commands/LogClear.php',
     'App\\Console\\Commands\\WebPython' => $baseDir . '/app/Console/Commands/WebPython.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',

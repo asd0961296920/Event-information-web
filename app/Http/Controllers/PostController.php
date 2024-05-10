@@ -94,6 +94,19 @@ class PostController extends Controller
             ];
         }
     }
+
+    public function user_chrome(Request $request)
+    {
+        $this->validate($request, [
+            'chrome' => 'required|boolean',
+        ]);
+        $user = User::first();
+
+        $user->chrome = $request->input("chrome");
+
+        $user->save();
+
+    }
     public function token(Request $request)
     {
 

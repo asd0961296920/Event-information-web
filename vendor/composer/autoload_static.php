@@ -562,6 +562,7 @@ class ComposerStaticInit0c7f07c25bd10a41321fe83f11f6c44d
         'App\\Common\\CommonApiUtils' => __DIR__ . '/../..' . '/app/Common/CommonApiUtils.php',
         'App\\Common\\Config' => __DIR__ . '/../..' . '/app/Common/Config.php',
         'App\\Console\\Commands\\AreaCommand' => __DIR__ . '/../..' . '/app/Console/Commands/AreaCommand.php',
+        'App\\Console\\Commands\\Clearpost' => __DIR__ . '/../..' . '/app/Console/Commands/Clearpost.php',
         'App\\Console\\Commands\\LogClear' => __DIR__ . '/../..' . '/app/Console/Commands/LogClear.php',
         'App\\Console\\Commands\\WebPython' => __DIR__ . '/../..' . '/app/Console/Commands/WebPython.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
