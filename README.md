@@ -1,6 +1,4 @@
-# Event-information-web
-
-## 專案簡介
+# 專案簡介
 
 這是一個基於 Laravel 和 Vue 框架的網站，其功能是自動搜尋各地區的活動資訊。這個網站遵循了前後端分離的開發模式，前端使用 Vue 來實現用戶界面和互動，而後端則使用 Laravel 來處理數據邏輯和與數據庫的交互。
 
@@ -16,7 +14,7 @@
 
 歡迎來逛逛~
 
-## 使用說明
+# 使用說明
 
 .env檔案基本資料需要設定
 
@@ -34,7 +32,7 @@ php artisan migrate
 
 ***
 
-## Project Introduction
+# Project Introduction
 
 This is a website based on the Laravel and Vue frameworks, designed to automatically search for event information in various regions. The website follows a development pattern of separating the frontend and backend. The frontend is built using Vue to create user interfaces and interactions, while the backend utilizes Laravel to handle data logic and interact with databases.
 
@@ -50,7 +48,7 @@ The website is deployed online:
 
 Feel free to visit!
 
-## Usage Instructions
+# Usage Instructions
 
 Basic information needs to be configured in the .env file.
 
