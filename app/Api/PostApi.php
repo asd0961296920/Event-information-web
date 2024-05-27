@@ -5,15 +5,17 @@ namespace App\Api;
 use DOMDocument;
 use DOMXPath;
 use App\Models\Post;
+use App\Api\PostVerifyApi;
 use Symfony\Component\DomCrawler\Crawler;
 
 class PostApi extends Api
 {
 
-
+    private $PostVerifyApi;
 
     function __construct()
     {
+        $this->PostVerifyApi = new PostVerifyApi();
     }
 
 
@@ -143,7 +145,8 @@ class PostApi extends Api
      */
     public function Clearpost()
     {
-
+        // Post::whereRaw("TRIM(title) REGEXP '^[0-9]{4}-[0-9]{2}-[0-9]{2} ~ [0-9]{4}-[0-9]{2}-[0-9]{2} *$'")
+        // ->delete();
         $posts = Post::all();
 
         foreach ($posts as $post) {
@@ -153,8 +156,13 @@ class PostApi extends Api
             if(strlen($post->title)<=5){
                 Post::where("id" , $post->id)->delete();
             }
+            // 检查字符串是否以"日期"开头
+            if (mb_substr($post->title, 0, 2, 'UTF-8') == "日期") {
+                Post::where("id" , $post->id)->delete();
+            }
 
         }
+
 
 
 
@@ -276,10 +284,13 @@ class PostApi extends Api
 
                             $date =  $this->tidyDate($date);
                         }
-
+                        if($this->PostVerifyApi->PostVerify($text['text']) == false){
+                            continue;
+                        }
 
 
                         $this->repeat_postModel($text['text'], $post_text, $htmlPython->connect_url . $text['url'], '', $htmlPython->name, $htmlPython->url, $htmlPython->id, $htmlPython->area_id, null, $imager_url, $date);
+                        $this->log_response($post_text, 'post_text', 200, '網站爬蟲api文章', []);
                     } else {
                         $this->log_request([], 'post_text', $text['url'], [], '網站爬蟲api文章');
                         $html_post = $this->getWebpage($text['url']);
@@ -301,6 +312,9 @@ class PostApi extends Api
                             $date =  $this->html_min_date($html_post, $htmlPython->event_date_filter);
 
                             $date =  $this->tidyDate($date);
+                        }
+                        if($this->PostVerifyApi->PostVerify($text['text']) == false){
+                            continue;
                         }
 
                         $this->repeat_postModel($text['text'], $post_text, $text['url'], '', $htmlPython->name, $htmlPython->url, $htmlPython->id, $htmlPython->area_id, null, $imager_url, $date);
