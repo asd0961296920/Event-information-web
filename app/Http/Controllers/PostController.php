@@ -6,6 +6,7 @@ use App\Services\PostService;
 use App\Http\Requests\HtmlPythonRequest;
 use App\Models\JS;
 use App\Models\User;
+use App\Models\Post;
 class PostController extends Controller
 {
     public function PostData(Request $request)
@@ -55,7 +56,11 @@ class PostController extends Controller
         $response = $service->GetData($request);
         return $response;
     }
+    public function GetAll(Request $request)
+    {
+        return Post::all();
 
+    }
     public function GetShow(Request $request,$id)
     {
         $service = new PostService();
